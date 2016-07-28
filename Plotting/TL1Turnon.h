@@ -20,7 +20,7 @@ class TL1Turnon : public TL1Plots
         ~TL1Turnon();
 
         virtual void InitPlots();
-        virtual void Fill(const double & xVal, const double & seedVal, const int & pu);
+        virtual void Fill(const double & xVal, const double & seedVal, const double & seedVal2, const int & pu);
         virtual void DrawPlots();
         void DrawCmsStamp(std::string stampPos="Left");
         void DrawTurnons();
@@ -29,6 +29,7 @@ class TL1Turnon : public TL1Plots
 
 
         void SetSeeds(const vector<double> & seeds);
+        void SetSeeds2(const vector<double> & seeds, const vector<double> & seeds2);
         void SetXBins(const vector<double> & xBins);
         void SetX(const std::string & xName, const std::string & xTitle);
         void SetSeed(const std::string & seedName, const std::string & seedTitle);
@@ -37,13 +38,14 @@ class TL1Turnon : public TL1Plots
         void SetColor(TH1F * hist, float fraction, int index);
 
         std::vector<std::vector<TH1F*>> fPlots;
+	std::vector<std::vector<TH1F*>> fPlots2;
         std::vector<std::vector<TGraphAsymmErrors*>> fTurnons;
         std::vector<std::vector<TF1*>> fFits;
 
         TFile* fPlotsRoot;
         TFile* fTurnonsRoot;
 
-        vector<double> fSeeds, fXBins;
+        vector<double> fSeeds, fSeeds2, fXBins;
         std::string fXName, fSeedName;
         std::string fXTitle, fSeedTitle;
         bool fDoFit;
@@ -80,12 +82,14 @@ void TL1Turnon::InitPlots()
     }
 }
 
-void TL1Turnon::Fill(const double & xVal, const double & seedVal, const int & pu)
+void TL1Turnon::Fill(const double & xVal, const double & seedVal, const double & seedVal2, const int & pu)
 {
     for(unsigned i=0; i<fSeeds.size(); ++i)
     {
+	if( !(seedVal2 >= fSeeds2[i]) ) break;
+	fPlots2[i][0]->Fill(xVal);
         if( !(seedVal >= fSeeds[i]) ) break;
-        fPlots[i][0]->Fill(xVal);
+	fPlots[i][0]->Fill(xVal);
 
         for(int ipu=0; ipu<this->GetPuType().size(); ++ipu)
         {
@@ -161,7 +165,7 @@ void TL1Turnon::DrawTurnons()
     for(int i=1; i<fSeeds.size(); ++i)
     {
         std::vector<TGraphAsymmErrors*> temp;
-        temp.emplace_back(new TGraphAsymmErrors(fPlots[i][0], fPlots[0][0]));
+        temp.emplace_back(new TGraphAsymmErrors(fPlots[i][0], fPlots2[i][0]));
         temp[0]->SetLineColor(fPlots[i][0]->GetLineColor());
         temp[0]->SetMarkerColor(fPlots[i][0]->GetMarkerColor());
         temp[0]->GetXaxis()->SetTitle(fPlots[i][0]->GetXaxis()->GetTitle());
@@ -282,6 +286,12 @@ TF1 TL1Turnon::fit(TGraphAsymmErrors * eff, int p50)
 void TL1Turnon::SetSeeds(const vector<double> & seeds)
 {
     fSeeds = seeds;
+}
+
+void TL1Turnon::SetSeeds2(const vector<double> & seeds, const vector<double> & seeds2)
+{
+    fSeeds = seeds;
+    fSeeds2 = seeds2;
 }
 
 void TL1Turnon::SetXBins(const vector<double> & xBins)

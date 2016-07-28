@@ -25,17 +25,17 @@ void makeJetXvsY()
     std::string triggerTitle = "Single Muon";
 
     std::string run = "6.3fb^{-1}"; // an additional label for the plots
-    std::string outDirBase = "/users/jt15104/l1t-macros/l1t-macros-Output/";
+    std::string outDirBase = "/afs/cern.ch/work/a/atittert/private/276525_SingleMuon";
     std::vector<std::string> puType = {"0PU12","13PU19","20PU"};
     std::vector<int> puBins = {0,13,20,999};
 
     std::vector<std::string> inDir;
     // inDir.push_back("/hdfs/user/jt15104/copiesFromEOS/singleMuon2016_v70p1/run276242/");
     // inDir.push_back("/hdfs/user/jt15104/copiesFromEOS/singleMuon2016_v70p1/run276243/");
-    inDir.push_back("/hdfs/user/jt15104/copiesFromEOS/singleMuon2016_v70p1/run276315/");
-    // inDir.push_back("");             
-    
-    std::string outDir = outDirBase+"/"+TL1DateTime::GetDate()+"_"+sample+"_"+"run-"+run+"_"+triggerName+"/xyJets/";
+    inDir.push_back("root://eoscms.cern.ch//eos/cms/store/group/dpg_trigger/comm_trigger/L1Trigger/L1Menu2016/Stage2/Collision2016-wRECO-l1t-integration-v71p1/SingleMuon/crab_Collision2016-wRECO-l1t-integration-v71p1__276525_SingleMuon/160713_153738/0000/");
+    // inDir.push_back("");
+
+    std::string outDir = outDirBase+"/xyJets/";
     TL1EventClass * event(new TL1EventClass(inDir));
 
     std::vector<TL1XvsY*> xvsy;
