@@ -20,24 +20,26 @@ void makeJetXvsY()
     SetMyStyle(57, 0.14, myStyle);
 
     // Basic
-    std::string sample = "Data";
+    std::string sampleName = "Data";
+    std::string sampleTitle = "2016 Data";
     std::string triggerName = "SingleMu";
     std::string triggerTitle = "Single Muon";
+    std::string puFilename = "/afs/cern.ch/work/s/sbreeze/l1tClasses/PUWeights/20160719_Data-SingleMu-2016Bv1_VBFHinv/pu_mcReweightedToData.root";
 
-    std::string run = "6.3fb^{-1}"; // an additional label for the plots
-    std::string outDirBase = "/afs/cern.ch/work/a/atittert/private/276525_SingleMuon";
+    std::string run = "276243";
+    std::string outDirBase = "/afs/cern.ch/work/s/sbreeze/L1TriggerStudiesOutput";
     std::vector<std::string> puType = {"0PU12","13PU19","20PU"};
     std::vector<int> puBins = {0,13,20,999};
 
     std::vector<std::string> inDir;
-    // inDir.push_back("/hdfs/user/jt15104/copiesFromEOS/singleMuon2016_v70p1/run276242/");
-    // inDir.push_back("/hdfs/user/jt15104/copiesFromEOS/singleMuon2016_v70p1/run276243/");
-    inDir.push_back("root://eoscms.cern.ch//eos/cms/store/group/dpg_trigger/comm_trigger/L1Trigger/L1Menu2016/Stage2/Collision2016-wRECO-l1t-integration-v71p1/SingleMuon/crab_Collision2016-wRECO-l1t-integration-v71p1__276525_SingleMuon/160713_153738/0000/");
-    // inDir.push_back("");
+    // inDir.push_back("/afs/cern.ch/work/s/sbreeze/public/jets_and_sums/160511_l1t-integration-v48p2/SingleMu/Ntuples");
+    // inDir.push_back("/afs/cern.ch/work/s/sbreeze/public/jets_and_sums/160519_l1t-integration-v53p1/SingleMu_273301/Ntuples");
+    // inDir.push_back("/afs/cern.ch/work/s/sbreeze/public/jets_and_sums/160607_combinedRuns_SingleMu");
+    // inDir.push_back("/afs/cern.ch/work/s/sbreeze/public/jets_and_sums/160704_SingleMu2016Bv1_l1t-int-v67p0");
+    inDir.push_back("/afs/cern.ch/work/s/sbreeze/public/jets_and_sums/160713_r276243_SingleMu_l1t-int-71p1/");
 
-    std::string outDir = outDirBase+"/xyJets/";
+    std::string outDir = outDirBase+"/"+TL1DateTime::GetDate()+"_"+sampleName+"_"+"run-"+run+"_"+triggerName+"/xyJets/";
     TL1EventClass * event(new TL1EventClass(inDir));
-
     std::vector<TL1XvsY*> xvsy;
 
     // Jet Et - barrel
@@ -122,12 +124,13 @@ void makeJetXvsY()
 
     for(auto it=xvsy.begin(); it!=xvsy.end(); ++it)
     {
-        (*it)->SetSample(sample,"");
+        (*it)->SetSample(sampleName,sampleTitle);
         (*it)->SetTrigger(triggerName,triggerTitle);
         (*it)->SetRun(run);
         (*it)->SetOutDir(outDir);
         (*it)->SetPuType(puType);
         (*it)->SetPuBins(puBins);
+        (*it)->SetPuFile(puFilename);
         (*it)->InitPlots();
     }
 
@@ -137,49 +140,41 @@ void makeJetXvsY()
         unsigned position = event->GetPEvent()->GetPosition()+1;
         TL1Progress::PrintProgressBar(position, NEntries);
 
+        if( !event->fIsLeadingRecoJet ) continue;
+        if( !event->fIsMatchedL1Jet ) continue;
+
         int pu = event->GetPEvent()->fVertex->nVtx;
         auto jets = event->GetPEvent()->fJets;
 
-        for(unsigned iRecoJet=0; iRecoJet<jets->nJets; ++iRecoJet)
+        double recoEt = jets->etCorr[event->fLeadingRecoJetIndex];
+        double recoEta = jets->eta[event->fLeadingRecoJetIndex];
+        double recoPhi = jets->phi[event->fLeadingRecoJetIndex];
+
+        double l1Et = event->fL1JetEt[event->fMatchedL1JetIndex];
+        double l1Eta = event->fL1JetEta[event->fMatchedL1JetIndex];
+        double l1Phi = event->fL1JetPhi[event->fMatchedL1JetIndex];
+
+        if( abs(recoEta) <= 1.479 )
         {
-            if( !event->fIsLeadingRecoJet ) continue;
-            if( !event->fIsMatchedL1Jet ) continue;
-
-            int pu = event->GetPEvent()->fVertex->nVtx;
-
-            double recoEt = jets->etCorr[event->fLeadingRecoJetIndex];
-            double recoEta = jets->eta[event->fLeadingRecoJetIndex];
-            double recoPhi = jets->phi[event->fLeadingRecoJetIndex];
-
-            double l1Et = event->fL1JetEt[event->fMatchedL1JetIndex];
-            double l1Eta = event->fL1JetEta[event->fMatchedL1JetIndex];
-            double l1Phi = event->fL1JetPhi[event->fMatchedL1JetIndex];
-            if( abs(recoEta) <= 1.479 )
-            {
-                //xvsy[0]->Fill(recoEt, l1Et, pu);
-                xvsy[0]->Fill(recoEt, l1Et, pu);
-
-                //xvsy[4]->Fill(FoldPhi(recoPhi), FoldPhi(l1Phi), pu);
-                xvsy[2]->Fill(FoldPhi(recoPhi), FoldPhi(l1Phi), pu);
-
-                xvsy[4]->Fill(recoEta, l1Eta, pu);
-            }
-            else if( abs(recoEta) <= 3.0 )
-            {
-                //xvsy[1]->Fill(recoEt, l1Et, pu);
-                xvsy[0]->Fill(recoEt, l1Et, pu);
-
-                //xvsy[5]->Fill(FoldPhi(recoPhi), FoldPhi(l1Phi), pu);
-                xvsy[2]->Fill(FoldPhi(recoPhi), FoldPhi(l1Phi), pu);
-
-                xvsy[4]->Fill(recoEta, l1Eta, pu);
-            }
-            else
-            {
-                xvsy[1]->Fill(recoEt, l1Et, pu);
-                xvsy[3]->Fill(FoldPhi(recoPhi), FoldPhi(l1Phi), pu);
-                xvsy[4]->Fill(recoEta, l1Eta, pu);
-            }
+            //xvsy[0]->Fill(recoEt, l1Et, pu);
+            xvsy[0]->Fill(recoEt, l1Et, pu);
+            //xvsy[4]->Fill(FoldPhi(recoPhi), FoldPhi(l1Phi), pu);
+            xvsy[2]->Fill(FoldPhi(recoPhi), FoldPhi(l1Phi), pu);
+            xvsy[4]->Fill(recoEta, l1Eta, pu);
+        }
+        else if( abs(recoEta) <= 3.0 )
+        {
+            //xvsy[1]->Fill(recoEt, l1Et, pu);
+            xvsy[0]->Fill(recoEt, l1Et, pu);
+            //xvsy[5]->Fill(FoldPhi(recoPhi), FoldPhi(l1Phi), pu);
+            xvsy[2]->Fill(FoldPhi(recoPhi), FoldPhi(l1Phi), pu);
+            xvsy[4]->Fill(recoEta, l1Eta, pu);
+        }
+        else
+        {
+            xvsy[1]->Fill(recoEt, l1Et, pu);
+            xvsy[3]->Fill(FoldPhi(recoPhi), FoldPhi(l1Phi), pu);
+            xvsy[4]->Fill(recoEta, l1Eta, pu);
         }
     }
 

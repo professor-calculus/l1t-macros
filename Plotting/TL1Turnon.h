@@ -20,7 +20,7 @@ class TL1Turnon : public TL1Plots
         ~TL1Turnon();
 
         virtual void InitPlots();
-        virtual void Fill(const double & xVal, const double & seedVal, const double & seedVal2, const int & pu);
+        virtual void Fill(const double & xVal, const double & seedVal, const int & pu=0);
         virtual void DrawPlots();
         void DrawCmsStamp(std::string stampPos="Left");
         void DrawTurnons();
@@ -29,79 +29,70 @@ class TL1Turnon : public TL1Plots
 
 
         void SetSeeds(const vector<double> & seeds);
-        void SetSeeds2(const vector<double> & seeds, const vector<double> & seeds2);
         void SetXBins(const vector<double> & xBins);
         void SetX(const std::string & xName, const std::string & xTitle);
         void SetSeed(const std::string & seedName, const std::string & seedTitle);
         void SetFit(const bool & doFit);
-    private:
-        void SetColor(TH1F * hist, float fraction, int index);
 
+    private:
         std::vector<std::vector<TH1F*>> fPlots;
-	std::vector<std::vector<TH1F*>> fPlots2;
         std::vector<std::vector<TGraphAsymmErrors*>> fTurnons;
         std::vector<std::vector<TF1*>> fFits;
 
         TFile* fPlotsRoot;
         TFile* fTurnonsRoot;
 
-        vector<double> fSeeds, fSeeds2, fXBins;
+        vector<double> fSeeds, fXBins;
         std::string fXName, fSeedName;
         std::string fXTitle, fSeedTitle;
         bool fDoFit;
 };
 
-TL1Turnon::~TL1Turnon()
-{
-    fPlotsRoot->Close();
-    fTurnonsRoot->Close();
-}
-
 void TL1Turnon::InitPlots()
 {
-    fPlotsRoot = new TFile(Form("%s/dists_%s.root",this->GetOutDir().c_str(),this->GetOutName().c_str()),"RECREATE");
-    fTurnonsRoot = new TFile(Form("%s/effs_%s.root",this->GetOutDir().c_str(),this->GetOutName().c_str()),"RECREATE");
+    fPlotsRoot = TFile::Open(Form("%s/dists_%s.root",this->GetOutDir().c_str(),this->GetOutName().c_str()),"RECREATE");
+    fTurnonsRoot = TFile::Open(Form("%s/effs_%s.root",this->GetOutDir().c_str(),this->GetOutName().c_str()),"RECREATE");
     for(unsigned i=0; i<fSeeds.size(); ++i)
     {
         std::vector<TH1F*> temp;
         temp.emplace_back(new TH1F(Form("dist_%s_%s_%g",fXName.c_str(),fSeedName.c_str(),fSeeds[i]),"", fXBins.size()-1,&(fXBins)[0]));
         temp.back()->SetDirectory(0);
+        temp.back()->Sumw2();
         temp.back()->GetXaxis()->SetTitle(fXTitle.c_str());
         temp.back()->GetYaxis()->SetTitle("Number of Entries");
-        SetColor(temp.back(), (double)(i-1)/(double)(fSeeds.size()-2), i);
+        this->SetColor(temp.back(), i-1, fSeeds.size()-1);
 
         for(int ipu=0; ipu<this->GetPuType().size(); ++ipu)
         {
             temp.emplace_back(new TH1F(Form("dist_%s_%s_%g_%s",fXName.c_str(),fSeedName.c_str(),fSeeds[i],this->GetPuType()[ipu].c_str()),"", fXBins.size()-1,&(fXBins)[0]));
             temp.back()->SetDirectory(0);
+            temp.back()->Sumw2();
             temp.back()->GetXaxis()->SetTitle(fXTitle.c_str());
             temp.back()->GetYaxis()->SetTitle("Number of Entries");
-            SetColor(temp.back(), (double)(ipu)/(double)(this->GetPuType().size()-2), ipu);
+            this->SetColor(temp.back(), ipu, this->GetPuType().size());
         }
         fPlots.push_back(temp);
     }
 }
 
-void TL1Turnon::Fill(const double & xVal, const double & seedVal, const double & seedVal2, const int & pu)
+void TL1Turnon::Fill(const double & xVal, const double & seedVal, const int & pu=0)
 {
     for(unsigned i=0; i<fSeeds.size(); ++i)
     {
-	if( !(seedVal2 >= fSeeds2[i]) ) break;
-	fPlots2[i][0]->Fill(xVal);
         if( !(seedVal >= fSeeds[i]) ) break;
-	fPlots[i][0]->Fill(xVal);
+        fPlots[i][0]->Fill(xVal,this->GetPuWeight(pu));
 
         for(int ipu=0; ipu<this->GetPuType().size(); ++ipu)
         {
             if( pu >= this->GetPuBins()[ipu] && pu < this->GetPuBins()[ipu+1] )
-                fPlots[i][ipu+1]->Fill(xVal);
+                fPlots[i][ipu+1]->Fill(xVal,this->GetPuWeight(pu));
         }
     }
 }
 
 void TL1Turnon::DrawPlots()
 {
-    TCanvas * can(new TCanvas("c1","c1")); 
+    TCanvas * can(new TCanvas(Form("can_%f",this->GetRnd()),"")); 
     TLegend * leg(new TLegend(0.58,0.35,0.88,0.55));
     for(unsigned i=0; i<fPlots.size(); ++i)
     {
@@ -160,12 +151,12 @@ void TL1Turnon::DrawCmsStamp(std::string stampPos="Left")
 
 void TL1Turnon::DrawTurnons()
 {
-    TCanvas * nomCan(new TCanvas("c1","c1"));
+    TCanvas * nomCan(new TCanvas(Form("can_%f",this->GetRnd()),"c1"));
     TLegend * nomLeg(new TLegend(0.62,0.15,0.87,0.15+0.2*(2+fSeeds.size())/5.0,this->GetAddMark().c_str()));
     for(int i=1; i<fSeeds.size(); ++i)
     {
         std::vector<TGraphAsymmErrors*> temp;
-        temp.emplace_back(new TGraphAsymmErrors(fPlots[i][0], fPlots2[i][0]));
+        temp.emplace_back(new TGraphAsymmErrors(fPlots[i][0], fPlots[0][0]));
         temp[0]->SetLineColor(fPlots[i][0]->GetLineColor());
         temp[0]->SetMarkerColor(fPlots[i][0]->GetMarkerColor());
         temp[0]->GetXaxis()->SetTitle(fPlots[i][0]->GetXaxis()->GetTitle());
@@ -184,7 +175,7 @@ void TL1Turnon::DrawTurnons()
         fTurnonsRoot->WriteTObject(fitTemp[0]);
         nomLeg->AddEntry(temp[0], Form("%s > %g",fSeedTitle.c_str(),fSeeds[i]));
 
-        TCanvas * puCan(new TCanvas(Form("puCan_%i",i),"puCan"));
+        TCanvas * puCan(new TCanvas(Form("puCan_%f",this->GetRnd()),""));
         TLegend * puLeg(new TLegend(0.65,0.15,0.9,0.15+0.08*this->GetPuType().size(),Form("%s > %g",fSeedTitle.c_str(),fSeeds[i])));
         for(int ipu=0; ipu<GetPuType().size(); ++ipu)
         {
@@ -240,38 +231,30 @@ void TL1Turnon::DrawCmsStampTurnon()
     TLatex * latex(new TLatex());
     latex->SetNDC();
     latex->SetTextFont(42);
+    if( this->GetSampleName() == "Data" )
+        latex->DrawLatex(0.15,0.92,Form("#bf{CMS} #it{Preliminary} %s",this->GetSampleTitle().c_str()));
+    else
+        latex->DrawLatex(0.15,0.92,Form("#bf{CMS} #it{Simulation Preliminary} %s",this->GetSampleTitle().c_str()));
+    latex->SetTextAlign(31);
+    latex->DrawLatex(0.92,0.92,Form("%s (13 TeV)",this->GetRun().c_str()));
+    latex->SetTextAlign(32);
+    latex->DrawLatex(0.82,0.25,this->GetAddMark().c_str());
+
     double min = fXBins.front();
     double max = fXBins.back();
     TLine * line(new TLine(min,1.,max,1.));
     line->SetLineStyle(7);
     line->DrawClone();
-    if( this->GetSampleName() == "Data" )
-    {
-        latex->DrawLatex(0.15,0.92,"#bf{CMS} #it{Preliminary} 2016 Data");
-        latex->SetTextAlign(31);
-        std::string runNo = "run " + this->GetRun() + ", ";
-        //latex->DrawLatex(0.92, 0.92, Form("%s%s, #sqrt{s} = 13 TeV",runNo.c_str(),this->GetTriggerTitle().c_str()));
-        latex->DrawLatex(0.92, 0.92, Form("%s (13 TeV)",this->GetRun().c_str()));
-    }
-    else
-    {
-        latex->DrawLatex(0.17, 0.80, "#bf{CMS}");
-        latex->DrawLatex(0.17, 0.75, "#it{Simulation}");
-        latex->DrawLatex(0.17, 0.70, "#it{Preliminary}");
-        latex->SetTextAlign(31); 
-        latex->DrawLatex(0.92, 0.92, Form("%s, #sqrt{s} = 13 TeV",this->GetSampleTitle().c_str()));
-    }
-    latex->SetTextAlign(11);
-    //latex->DrawLatex(0.18,0.92,this->GetAddMark().c_str());
 }
 
 TF1 TL1Turnon::fit(TGraphAsymmErrors * eff, int p50)
 {
-    std::string func = Form("[0]*0.5*(1+TMath::Erf((x-[1])/TMath::Sqrt([2])))");
+    //std::string func = "[0]*0.5*exp([0]*0.5*(2.0*[1]+[0]*[2]*[2]-2.0*x))*(1-TMath::Erf(([1]+[0]*[2]*[2]-x)/(sqrt(2.0)*[2]))";
+    std::string func = "[0]*0.5*exp([0]*0.5*(2.0*[1]+[0]*[2]*[2]-2.0*x))*(1-TMath::Erf([1]/(sqrt(2)*[2])+[0]*[2]/sqrt(2)-x/(sqrt(2)*[2])))";
     TF1 fitFcn(Form("fit_%s",eff->GetName()),func.c_str(),fXBins.front(),fXBins.back());
     if( fDoFit )
     {
-        fitFcn.SetParameters( 1.0000,(double)p50,150.0);
+        fitFcn.SetParameters( 1.000,150.0,(double)p50 );
         eff->Fit(fitFcn.GetName(),"E0"); 
 
         for(int i=0; i<10; ++i)
@@ -286,12 +269,6 @@ TF1 TL1Turnon::fit(TGraphAsymmErrors * eff, int p50)
 void TL1Turnon::SetSeeds(const vector<double> & seeds)
 {
     fSeeds = seeds;
-}
-
-void TL1Turnon::SetSeeds2(const vector<double> & seeds, const vector<double> & seeds2)
-{
-    fSeeds = seeds;
-    fSeeds2 = seeds2;
 }
 
 void TL1Turnon::SetXBins(const vector<double> & xBins)
@@ -314,19 +291,6 @@ void TL1Turnon::SetSeed(const std::string & seedName, const std::string & seedTi
 void TL1Turnon::SetFit(const bool & doFit)
 {
     fDoFit = doFit;
-}
-
-void TL1Turnon::SetColor(TH1F * hist, float fraction, int index)
-{
-    double modifier(0.15), colorIndex;
-    int colour(1);
-    if( fraction >= 0.0 )
-    {
-        colorIndex = (fraction * (1.0-2.0*modifier) + modifier) * gStyle->GetNumberOfColors();
-        colour = gStyle->GetColorPalette(colorIndex);
-    }
-    hist->SetLineColor(colour);
-    hist->SetMarkerColor(colour);
 }
 
 #endif

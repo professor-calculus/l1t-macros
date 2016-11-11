@@ -19,7 +19,7 @@ class TL1XvsY : public TL1Plots
         ~TL1XvsY();
 
         virtual void InitPlots();
-        virtual void Fill(const double & xVal, const double & yVal, const int & pu);
+        virtual void Fill(const double & xVal, const double & yVal, const int & pu=0);
         virtual void DrawPlots();
         void DrawCmsStamp();
 
@@ -37,40 +37,37 @@ class TL1XvsY : public TL1Plots
 
 };
 
-TL1XvsY::~TL1XvsY()
-{
-    fRootFile->Close();
-}
-
 void TL1XvsY::InitPlots()
 {
-    fRootFile = new TFile(Form("%s/xy_%s.root",this->GetOutDir().c_str(),this->GetOutName().c_str()),"RECREATE");
+    fRootFile = TFile::Open(Form("%s/xy_%s.root",this->GetOutDir().c_str(),this->GetOutName().c_str()),"RECREATE");
     fPlot.emplace_back(new TH2F(Form("xy_%s_vs_%s",fXName.c_str(),fYName.c_str()),"", fXBins.size()-1,&(fXBins)[0], fYBins.size()-1,&(fYBins)[0]));
     fPlot.back()->SetDirectory(0);
+    fPlot.back()->Sumw2();
     fPlot.back()->GetXaxis()->SetTitle(fXTitle.c_str());
     fPlot.back()->GetYaxis()->SetTitle(fYTitle.c_str());
     for(int ipu=0; ipu<this->GetPuType().size(); ++ipu)
     {
         fPlot.emplace_back(new TH2F(Form("xy_%s_vs_%s_%s",fXName.c_str(),fYName.c_str(), this->GetPuType()[ipu].c_str()),"", fXBins.size()-1,&(fXBins)[0], fYBins.size()-1,&(fYBins)[0]));
         fPlot.back()->SetDirectory(0);
+        fPlot.back()->Sumw2();
         fPlot.back()->GetXaxis()->SetTitle(fXTitle.c_str());
         fPlot.back()->GetYaxis()->SetTitle(fYTitle.c_str());
     }
 }
 
-void TL1XvsY::Fill(const double & xVal, const double & yVal, const int & pu)
+void TL1XvsY::Fill(const double & xVal, const double & yVal, const int & pu=0)
 {
-    fPlot[0]->Fill(xVal,yVal);
+    fPlot[0]->Fill(xVal,yVal,this->GetPuWeight(pu));
     for(int ipu=0; ipu<this->GetPuType().size(); ++ipu)
     {
         if( pu >= this->GetPuBins()[ipu] && pu < this->GetPuBins()[ipu+1] )
-            fPlot[ipu+1]->Fill(xVal,yVal);
+            fPlot[ipu+1]->Fill(xVal,yVal,this->GetPuWeight(pu));
     }
 }
 
 void TL1XvsY::DrawPlots()
 {
-    TCanvas * can(new TCanvas("c1","c1")); 
+    TCanvas * can(new TCanvas(Form("can_%d",this->GetRnd()),"")); 
     fPlot[0]->SetMinimum(1);
     fPlot[0]->Draw("colz");
     fRootFile->WriteTObject(fPlot[0]);
@@ -88,7 +85,7 @@ void TL1XvsY::DrawPlots()
 
     for(int ipu=0; ipu<this->GetPuType().size(); ++ipu)
     {
-        TCanvas * can2(new TCanvas(Form("c2_%i",ipu),"c2"));
+        TCanvas * can2(new TCanvas(Form("can_%d",this->GetRnd()),""));
         fPlot[ipu+1]->SetMinimum(1);
         fPlot[ipu+1]->Draw("colz");
         fRootFile->WriteTObject(fPlot[ipu+1]);
@@ -116,22 +113,12 @@ void TL1XvsY::DrawCmsStamp()
     latex->SetNDC();
     latex->SetTextFont(42);
     //latex->SetTextAlign(11);
-    latex->DrawLatex(0.15,0.92,"#bf{CMS} #it{Preliminary} 2016 Data");
     if( this->GetSampleName() == "Data" )
-    {
-        //latex->DrawLatex(0.18,0.80,"
-        latex->SetTextAlign(31);
-        std::string runNo = "run " + this->GetRun() + ", ";
-        //latex->DrawLatex(0.92, 0.92, Form("%s%s, #sqrt{s} = 13 TeV",runNo.c_str(),this->GetTriggerTitle().c_str()));
-        latex->DrawLatex(0.92,0.92,Form("%s (13 TeV)",this->GetRun().c_str()));
-    }
+        latex->DrawLatex(0.15,0.92,Form("#bf{CMS} #it{Preliminary} %s",this->GetSampleTitle().c_str()));
     else
-    {
-        latex->DrawLatex(0.18,0.80,"#it{Simulation}");
-        latex->DrawLatex(0.18,0.75,"#it{Preliminary}");
-        latex->SetTextAlign(31);
-        latex->DrawLatex(0.92, 0.92, Form("%s, #sqrt{s} = 13 TeV",this->GetSampleTitle().c_str()));
-    }
+        latex->DrawLatex(0.15,0.92,Form("#bf{CMS} #it{Simulation Preliminary} %s",this->GetSampleTitle().c_str()));
+    latex->SetTextAlign(31);
+    latex->DrawLatex(0.92,0.92,Form("%s (13 TeV)",this->GetRun().c_str()));
     latex->SetTextAlign(32);
     latex->DrawLatex(0.82,0.25,this->GetAddMark().c_str());
 

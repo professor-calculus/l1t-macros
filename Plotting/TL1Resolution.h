@@ -19,15 +19,14 @@ class TL1Resolution : public TL1Plots
         ~TL1Resolution();
 
         virtual void InitPlots();
-        virtual void Fill(const double & xVal, const double & yVal, const int & pu);
+        virtual void Fill(const double & xVal, const double & yVal, const int & pu=0);
         virtual void DrawPlots();
 
         void SetBins(const std::vector<double> & bins);
         void SetX(const std::string & xName, const std::string & xTitle);
         void SetY(const std::string & yName, const std::string & yTitle);
         void SetPlotType(const std::string & plotType);
-        void SetColor(TH1F * plot, float fraction, int index);
-        void DrawCmsStamp(std::string stampPos="Left");
+        void DrawCmsStamp();
 
         std::string GetXAxisTitle() const;
         double GetFillVal(const double & xVal, const double & yVal) const;
@@ -46,44 +45,45 @@ class TL1Resolution : public TL1Plots
 
 TL1Resolution::~TL1Resolution()
 {
-    fRootFile->Close();
+    delete fRootFile;
 }
 
 void TL1Resolution::InitPlots()
 {
-    fRootFile = new TFile(Form("%s/res_%s.root",this->GetOutDir().c_str(),this->GetOutName().c_str()),"RECREATE");
+    fRootFile = TFile::Open(Form("%s/res_%s.root",this->GetOutDir().c_str(),this->GetOutName().c_str()),"RECREATE");
 
     fPlot.emplace_back(new TH1F(Form("res_%s_%s_%s",fPlotType.c_str(),fXName.c_str(),fYName.c_str()),"", fBins.size()-1,&(fBins)[0]));
     fPlot.back()->SetDirectory(0);
+    fPlot.back()->Sumw2();
     fPlot.back()->GetXaxis()->SetTitle(GetXAxisTitle().c_str());
     fPlot.back()->GetYaxis()->SetTitle("a.u.");
     for(int i=0; i<this->GetPuType().size(); ++i)
     {
         fPlot.emplace_back(new TH1F(Form("res_%s_%s__%s%s",fPlotType.c_str(),fXName.c_str(),fYName.c_str(),this->GetPuType()[i].c_str()),"", fBins.size()-1,&(fBins)[0]));
         fPlot.back()->SetDirectory(0);
+        fPlot.back()->Sumw2();
         fPlot.back()->GetXaxis()->SetTitle(GetXAxisTitle().c_str());
         fPlot.back()->GetYaxis()->SetTitle("a.u.");
     }
 }
 
-void TL1Resolution::Fill(const double & xVal, const double & yVal, const int & pu)
+void TL1Resolution::Fill(const double & xVal, const double & yVal, const int & pu=0)
 {
     double div = GetFillVal(xVal, yVal);
-    fPlot[0]->Fill(div);
+    fPlot[0]->Fill(div,this->GetPuWeight(pu));
     for(int i=0; i<this->GetPuType().size(); ++i)
     {
         if( pu >= this->GetPuBins()[i] && pu < this->GetPuBins()[i+1] )
-            fPlot[i+1]->Fill(div);
+            fPlot[i+1]->Fill(div,this->GetPuWeight(pu));
     }
 }
 
 void TL1Resolution::DrawPlots()
 {
-    TCanvas * can(new TCanvas("c1","c1")); 
+    TCanvas * can(new TCanvas(Form("can_%f",this->GetRnd()),"")); 
 
     fPlot[0]->SetLineColor(kBlue-4);
     fPlot[0]->SetMarkerColor(kBlue-4);
-    fPlot[0]->Sumw2();
     fPlot[0]->Scale(1./fPlot[0]->Integral());
     fPlot[0]->SetMinimum(0.0);
     fPlot[0]->Draw("pe");
@@ -104,51 +104,46 @@ void TL1Resolution::DrawPlots()
     line->SetNDC();
     line->DrawLine(0.0,0.0,0.0,can->GetUymax());
 
-    TLatex * latex(new TLatex());
-    latex->SetNDC();
-    latex->SetTextFont(42);
-    latex->SetTextAlign(31);
-    //latex->DrawLatex(0.9,0.7,Form("#splitline{%s}{<PU>=14}",this->GetAddMark().c_str()));
-    latex->DrawLatex(0.9,0.7,Form("%s",this->GetAddMark().c_str()));
-
     std::string outName = Form("%s/res_%s.pdf",this->GetOutDir().c_str(),this->GetOutName().c_str());
     can->SaveAs(outName.c_str());
+    delete can;
 
-    TCanvas * can2(new TCanvas("c2","c2")); 
-    TLegend * leg(new TLegend(0.65,0.55,0.88,0.55+0.05*this->GetPuType().size()));
+    THStack * stack(new THStack("hs",""));
     for(int i=0; i<this->GetPuType().size(); ++i)
     {
-        this->SetColor(fPlot[i+1], (double)(this->GetPuType().size()-i-1)/(double)(this->GetPuType().size()-2),i+1);
-        fPlot[i+1]->Sumw2();
+        this->SetColor(fPlot[i+1], i, this->GetPuType().size());
         fPlot[i+1]->Scale(1./fPlot[i+1]->Integral());
         fPlot[i+1]->SetMinimum(0.0);
-        fPlot[i+1]->SetMaximum(1.1*fPlot[i+1]->GetMaximum());
-        if( i==0 ) fPlot[i+1]->Draw("pe");
-        else fPlot[i+1]->Draw("pesame");
-        fPlot[i+1]->Draw("histsame");
+
+        std::string entryName("");
+        if( i < this->GetPuType().size()-1 ) entryName = Form("%i #leq PU < %i",this->GetPuBins()[i],this->GetPuBins()[i+1]);
+        else entryName = Form("%i #leq PU",this->GetPuBins()[i]);
+        fPlot[i+1]->SetName(entryName.c_str());
+
+        stack->Add(fPlot[i+1],"pe");
         fRootFile->WriteTObject(fPlot[i+1]);
 
-        TF1 * fitFcn2(new TF1(Form("fit_%s",fPlot[i+1]->GetName()),"gaus(0)",-1,3));
+        //TF1 * fitFcn2(new TF1(Form("fit_%s",fPlot[i+1]->GetName()),"gaus(0)",-1,3));
         //fPlot[i+1]->Fit(fitFcn2,"E0");
         //for(int j=0; j<10; ++j) fPlot[i+1]->Fit(fitFcn2,"E0M");
-        fitFcn2->SetLineColor(fPlot[i+1]->GetLineColor());
+        //fitFcn2->SetLineColor(fPlot[i+1]->GetLineColor());
         //fitFcn2->Draw("same");
         //fRootFile->WriteTObject(fitFcn2);
-        
-        std::stringstream entryName;
-        if( i < this->GetPuType().size()-1 ) entryName << this->GetPuBins()[i] << " #leq PU < " << this->GetPuBins()[i+1];
-        else entryName << this->GetPuBins()[i] << " #leq PU";
-        leg->AddEntry(fPlot[i+1],entryName.str().c_str());
-        entryName.str("");
     }
-    DrawCmsStamp();
-    latex->DrawLatex(0.9,0.8,this->GetAddMark().c_str());
+
+    TCanvas * can2(new TCanvas(Form("can_%f",this->GetRnd()),"")); 
+    TLegend * leg(new TLegend(0.65,0.55,0.88,0.55+0.05*this->GetPuType().size()));
+    leg->AddEntry(stack);
+
+    stack->Draw("nostack");
     leg->Draw();
+    DrawCmsStamp();
+
     can2->Update();
     line->DrawLine(0.0,0.0,0.0,can2->GetUymax());
-
     outName = Form("%s/res_%s_puBins.pdf",this->GetOutDir().c_str(),this->GetOutName().c_str());
     can2->SaveAs(outName.c_str());
+    delete can2;
 }
 
 void TL1Resolution::SetBins(const std::vector<double> & bins)
@@ -173,53 +168,19 @@ void TL1Resolution::SetPlotType(const std::string & plotType)
     fPlotType = plotType;
 }
 
-void TL1Resolution::SetColor(TH1F * plot, float fraction, int index)
-{
-    double modifier(0.15), colorIndex;
-    int colour(1);
-    if( fraction >= 0.0 )
-    {
-        colorIndex = (fraction * (1.0-2.0*modifier) + modifier) * gStyle->GetNumberOfColors();
-        colour = gStyle->GetColorPalette(colorIndex);
-    }
-    plot->SetLineColor(colour);
-    plot->SetMarkerColor(colour);
-}
-
-void TL1Resolution::DrawCmsStamp(std::string stampPos="Left")
+void TL1Resolution::DrawCmsStamp()
 {
     TLatex * latex(new TLatex());
     latex->SetNDC();
     latex->SetTextFont(42);
-    if( stampPos == "Left" )
-    {
-        latex->SetTextAlign(11);
-        latex->DrawLatex(0.15,0.92,"#bf{CMS} #it{Preliminary} 2016 Data");
-    }
-    if( stampPos == "Right" )
-    {
-        latex->SetTextAlign(32);
-        latex->DrawLatex(0.86,0.85,"#bf{CMS}");
-    }
-    if( this->GetSampleName() == "Data" )
-    {
-        //if( stampPos == "Left" ) latex->DrawLatex(0.18,0.80,"#it{Preliminary}");
-        if( stampPos == "Right" ) latex->DrawLatex(0.86,0.80,"#it{Preliminary}");
-        latex->SetTextAlign(31);
-        std::string runNo = "run " + this->GetRun() + ", ";
-        //latex->DrawLatex(0.92, 0.92, Form("%s%s, #sqrt{s} = 13 TeV",runNo.c_str(),this->GetTriggerTitle().c_str()));
-        latex->DrawLatex(0.92,0.92,Form("%s (13 TeV)",this->GetRun().c_str()));
-    }
-    else
-    {
-        latex->DrawLatex(0.18,0.80,"#it{Simulation}");
-        latex->DrawLatex(0.18,0.75,"#it{Preliminary}");
-        latex->SetTextAlign(31);
-        latex->DrawLatex(0.92, 0.92, Form("%s, #sqrt{s} = 13 TeV",this->GetSampleTitle().c_str()));
-    }
     latex->SetTextAlign(11);
-    //latex->DrawLatex(0.18,0.92,this->GetAddMark().c_str());
-
+    if( this->GetSampleName() == "Data" )
+        latex->DrawLatex(0.15,0.92,Form("#bf{CMS} #it{Preliminary} %s",this->GetSampleTitle().c_str()));
+    else
+        latex->DrawLatex(0.15,0.92,Form("#bf{CMS} #it{Simulation Preliminary} %s",this->GetSampleTitle().c_str()));
+    latex->SetTextAlign(31);
+    latex->DrawLatex(0.92,0.92,Form("%s (13 TeV)",this->GetRun().c_str()));
+    latex->DrawLatex(0.9,0.8,this->GetAddMark().c_str());
 }
 
 std::string TL1Resolution::GetXAxisTitle() const
