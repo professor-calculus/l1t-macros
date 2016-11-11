@@ -1,0 +1,728 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		2F5E81C79E46473088388922 /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 5F8E7EF5878A4547AE07F09B /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				E2368059C8DA44C8B03942B3 /* CMake Rules */,
+			);
+			dependencies = (
+				F41F19769DA44C66A5ED7869 /* PBXTargetDependency */,
+				192CC40543044C2EB01E1870 /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+		8C99B9F292C549EFA9362243 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A01A7736199745F0A36899F7 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				88432F69FA044B178263C47E /* CMake Rules */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		04D10534A1574BBDB9D618D8 /* /Users/alex/Documents/l1t-macros/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 7E950D843A8E4368981B2DA3 /* /Users/alex/Documents/l1t-macros/CMakeLists.txt */; settings = {COMPILER_FLAGS = ""; }; };
+		174FA82EF1DC48068E78850C /* /Users/alex/Documents/l1t-macros/Event/TL1DataClass.h */ = {isa = PBXBuildFile; fileRef = 38397EA5A2D449FDAD19F3A4 /* /Users/alex/Documents/l1t-macros/Event/TL1DataClass.h */; settings = {COMPILER_FLAGS = ""; }; };
+		26DFE2048DC541869B31CD40 /* /Users/alex/Documents/l1t-macros/Plotting/TL1XvsY.h */ = {isa = PBXBuildFile; fileRef = 300A83542CFF412A9B0937C1 /* /Users/alex/Documents/l1t-macros/Plotting/TL1XvsY.h */; settings = {COMPILER_FLAGS = ""; }; };
+		403DF82036D14CC98F2DB795 /* /Users/alex/Documents/l1t-macros/Plotting/TL1Resolution.h */ = {isa = PBXBuildFile; fileRef = 1FD1EEC4EF244C02BBAD23CA /* /Users/alex/Documents/l1t-macros/Plotting/TL1Resolution.h */; settings = {COMPILER_FLAGS = ""; }; };
+		5CB8D8CA768D40A0B8D3BCC4 /* /Users/alex/Documents/l1t-macros/makeJetXvsY.cxx */ = {isa = PBXBuildFile; fileRef = 06AF634DE67D4D75B3A98B56 /* /Users/alex/Documents/l1t-macros/makeJetXvsY.cxx */; settings = {COMPILER_FLAGS = ""; }; };
+		65DDF1115ED04F3682CEE4C3 /* /Users/alex/Documents/l1t-macros/makeJetResolutions.cxx */ = {isa = PBXBuildFile; fileRef = CFD5DC0523AC4FA8885F4F8B /* /Users/alex/Documents/l1t-macros/makeJetResolutions.cxx */; settings = {COMPILER_FLAGS = ""; }; };
+		8DCA8C22610D406E9C05CE70 /* /Users/alex/Documents/l1t-macros/Event/TL1EventClass.h */ = {isa = PBXBuildFile; fileRef = F161CC72E54B4EB98B3309CF /* /Users/alex/Documents/l1t-macros/Event/TL1EventClass.h */; settings = {COMPILER_FLAGS = ""; }; };
+		B3F5A17E26B241A281B39D05 /* /Users/alex/Documents/l1t-macros/makeResolutions.cxx */ = {isa = PBXBuildFile; fileRef = 9EC52642D932499787C3AC6F /* /Users/alex/Documents/l1t-macros/makeResolutions.cxx */; settings = {COMPILER_FLAGS = ""; }; };
+		C9640C65C9024A8C9AE77042 /* /Users/alex/Documents/l1t-macros/Event/TL1PrimitiveEventClass.h */ = {isa = PBXBuildFile; fileRef = A860B09821CC406CB0889707 /* /Users/alex/Documents/l1t-macros/Event/TL1PrimitiveEventClass.h */; settings = {COMPILER_FLAGS = ""; }; };
+		CA14BFB751354BB2915656A2 /* /Users/alex/Documents/l1t-macros/Plotting/TL1Plots.h */ = {isa = PBXBuildFile; fileRef = 274DFE905A2E4516AACAFBC6 /* /Users/alex/Documents/l1t-macros/Plotting/TL1Plots.h */; settings = {COMPILER_FLAGS = ""; }; };
+		CC84CADE89E147448FC9D6E7 /* /Users/alex/Documents/l1t-macros/makeXvsY.cxx */ = {isa = PBXBuildFile; fileRef = 901D3B9A4A1F48429C58C96C /* /Users/alex/Documents/l1t-macros/makeXvsY.cxx */; settings = {COMPILER_FLAGS = ""; }; };
+		CCCBB927DEDC484BB35BBEA7 /* /Users/alex/Documents/l1t-macros/makeJetTurnons.cxx */ = {isa = PBXBuildFile; fileRef = 14823E21C8C649C9B7222A72 /* /Users/alex/Documents/l1t-macros/makeJetTurnons.cxx */; settings = {COMPILER_FLAGS = ""; }; };
+		D3E25E9BAAE2448892A587EA /* /Users/alex/Documents/l1t-macros/makeTurnons.cxx */ = {isa = PBXBuildFile; fileRef = 1D082DC1550A4C2A8D89C38A /* /Users/alex/Documents/l1t-macros/makeTurnons.cxx */; settings = {COMPILER_FLAGS = ""; }; };
+		FCD3D6266C8142A9B61D10AF /* /Users/alex/Documents/l1t-macros/Plotting/TL1Turnon.h */ = {isa = PBXBuildFile; fileRef = B110703600B24752A5245113 /* /Users/alex/Documents/l1t-macros/Plotting/TL1Turnon.h */; settings = {COMPILER_FLAGS = ""; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		813AC39711144C4ABD17283C /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		8B139FA9574349D8AEC91FD2 = {
+			isa = PBXBuildStyle;
+		};
+		90F16CF13BB34177843AAB07 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		A0AFFA19EBFF4B2BB972210B /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		BBFEEE4C03184F7183D30915 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		32624D0CD4A24E09A9B72493 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8BB2A232C777456EA13362ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C99B9F292C549EFA9362243;
+			remoteInfo = ZERO_CHECK;
+		};
+		58E145B4323540AEB4CAC6B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8BB2A232C777456EA13362ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C99B9F292C549EFA9362243;
+			remoteInfo = ZERO_CHECK;
+		};
+		9C402BC3B8894A3F9A91C93B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8BB2A232C777456EA13362ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFA24F16D6BC40EDA3D09880;
+			remoteInfo = "l1t-macros";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		06AF634DE67D4D75B3A98B56 /* /Users/alex/Documents/l1t-macros/makeJetXvsY.cxx */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = makeJetXvsY.cxx; path = makeJetXvsY.cxx; sourceTree = SOURCE_ROOT; };
+		14823E21C8C649C9B7222A72 /* /Users/alex/Documents/l1t-macros/makeJetTurnons.cxx */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = makeJetTurnons.cxx; path = makeJetTurnons.cxx; sourceTree = SOURCE_ROOT; };
+		1D082DC1550A4C2A8D89C38A /* /Users/alex/Documents/l1t-macros/makeTurnons.cxx */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = makeTurnons.cxx; path = makeTurnons.cxx; sourceTree = SOURCE_ROOT; };
+		1FD1EEC4EF244C02BBAD23CA /* /Users/alex/Documents/l1t-macros/Plotting/TL1Resolution.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TL1Resolution.h; path = Plotting/TL1Resolution.h; sourceTree = SOURCE_ROOT; };
+		274DFE905A2E4516AACAFBC6 /* /Users/alex/Documents/l1t-macros/Plotting/TL1Plots.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TL1Plots.h; path = Plotting/TL1Plots.h; sourceTree = SOURCE_ROOT; };
+		2969EB370DC6444AB3F972BD /* /Users/alex/Documents/l1t-macros/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		300A83542CFF412A9B0937C1 /* /Users/alex/Documents/l1t-macros/Plotting/TL1XvsY.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TL1XvsY.h; path = Plotting/TL1XvsY.h; sourceTree = SOURCE_ROOT; };
+		38397EA5A2D449FDAD19F3A4 /* /Users/alex/Documents/l1t-macros/Event/TL1DataClass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TL1DataClass.h; path = Event/TL1DataClass.h; sourceTree = SOURCE_ROOT; };
+		6108C0E25C7047969699E6A7 /* l1t-macros */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = "l1t-macros"; refType = 0; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E950D843A8E4368981B2DA3 /* /Users/alex/Documents/l1t-macros/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		901D3B9A4A1F48429C58C96C /* /Users/alex/Documents/l1t-macros/makeXvsY.cxx */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = makeXvsY.cxx; path = makeXvsY.cxx; sourceTree = SOURCE_ROOT; };
+		9EC52642D932499787C3AC6F /* /Users/alex/Documents/l1t-macros/makeResolutions.cxx */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = makeResolutions.cxx; path = makeResolutions.cxx; sourceTree = SOURCE_ROOT; };
+		A144DB3A37434C61930B6318 /* /Users/alex/Documents/l1t-macros/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		A860B09821CC406CB0889707 /* /Users/alex/Documents/l1t-macros/Event/TL1PrimitiveEventClass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TL1PrimitiveEventClass.h; path = Event/TL1PrimitiveEventClass.h; sourceTree = SOURCE_ROOT; };
+		B110703600B24752A5245113 /* /Users/alex/Documents/l1t-macros/Plotting/TL1Turnon.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TL1Turnon.h; path = Plotting/TL1Turnon.h; sourceTree = SOURCE_ROOT; };
+		CFD5DC0523AC4FA8885F4F8B /* /Users/alex/Documents/l1t-macros/makeJetResolutions.cxx */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = makeJetResolutions.cxx; path = makeJetResolutions.cxx; sourceTree = SOURCE_ROOT; };
+		F161CC72E54B4EB98B3309CF /* /Users/alex/Documents/l1t-macros/Event/TL1EventClass.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = TL1EventClass.h; path = Event/TL1EventClass.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		143CCA5FBECE4B80835FA490 /* ZERO_CHECK */ = {
+			isa = PBXGroup;
+			children = (
+				8345DE8E3B004CABA98DC5E0 /* CMake Rules */,
+				A144DB3A37434C61930B6318 /* /Users/alex/Documents/l1t-macros/CMakeLists.txt */,
+			);
+			name = ZERO_CHECK;
+			sourceTree = "<group>";
+		};
+		33423CD16909412DBC3B5EB0 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				CFD5DC0523AC4FA8885F4F8B /* /Users/alex/Documents/l1t-macros/makeJetResolutions.cxx */,
+				14823E21C8C649C9B7222A72 /* /Users/alex/Documents/l1t-macros/makeJetTurnons.cxx */,
+				06AF634DE67D4D75B3A98B56 /* /Users/alex/Documents/l1t-macros/makeJetXvsY.cxx */,
+				9EC52642D932499787C3AC6F /* /Users/alex/Documents/l1t-macros/makeResolutions.cxx */,
+				1D082DC1550A4C2A8D89C38A /* /Users/alex/Documents/l1t-macros/makeTurnons.cxx */,
+				901D3B9A4A1F48429C58C96C /* /Users/alex/Documents/l1t-macros/makeXvsY.cxx */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		6C810374DF8F4E4F95728FC5 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		763A811A28F14511992C1F89 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		8345DE8E3B004CABA98DC5E0 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		91797C0800AE4F3FB29CF413 /* l1t-macros */ = {
+			isa = PBXGroup;
+			children = (
+				33423CD16909412DBC3B5EB0 /* Source Files */,
+				EC62AC7B29D641769D12989A /* Header Files */,
+				7E950D843A8E4368981B2DA3 /* /Users/alex/Documents/l1t-macros/CMakeLists.txt */,
+			);
+			name = "l1t-macros";
+			sourceTree = "<group>";
+		};
+		99995809781142528C8E892E = {
+			isa = PBXGroup;
+			children = (
+				A06A2D81A9FA43A0B75D984C /* Sources */,
+				763A811A28F14511992C1F89 /* Resources */,
+				C9EDB9D6ED2B4207ADF46AD2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A06A2D81A9FA43A0B75D984C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				143CCA5FBECE4B80835FA490 /* ZERO_CHECK */,
+				BFFB6BF263FE4174B1E15E23 /* ALL_BUILD */,
+				91797C0800AE4F3FB29CF413 /* l1t-macros */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		BFFB6BF263FE4174B1E15E23 /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				6C810374DF8F4E4F95728FC5 /* CMake Rules */,
+				2969EB370DC6444AB3F972BD /* /Users/alex/Documents/l1t-macros/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		C9EDB9D6ED2B4207ADF46AD2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6108C0E25C7047969699E6A7 /* l1t-macros */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC62AC7B29D641769D12989A /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				38397EA5A2D449FDAD19F3A4 /* /Users/alex/Documents/l1t-macros/Event/TL1DataClass.h */,
+				F161CC72E54B4EB98B3309CF /* /Users/alex/Documents/l1t-macros/Event/TL1EventClass.h */,
+				A860B09821CC406CB0889707 /* /Users/alex/Documents/l1t-macros/Event/TL1PrimitiveEventClass.h */,
+				274DFE905A2E4516AACAFBC6 /* /Users/alex/Documents/l1t-macros/Plotting/TL1Plots.h */,
+				1FD1EEC4EF244C02BBAD23CA /* /Users/alex/Documents/l1t-macros/Plotting/TL1Resolution.h */,
+				B110703600B24752A5245113 /* /Users/alex/Documents/l1t-macros/Plotting/TL1Turnon.h */,
+				300A83542CFF412A9B0937C1 /* /Users/alex/Documents/l1t-macros/Plotting/TL1XvsY.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CFA24F16D6BC40EDA3D09880 /* l1t-macros */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22B572F1085D4DA2A3F803B9 /* Build configuration list for PBXNativeTarget "l1t-macros" */;
+			buildPhases = (
+				2B202545110B48A1A599B3F9 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE1E70974FBD4BA8B1CF647D /* PBXTargetDependency */,
+			);
+			name = "l1t-macros";
+			productName = "l1t-macros";
+			productReference = 6108C0E25C7047969699E6A7 /* l1t-macros */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8BB2A232C777456EA13362ED /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+			};
+			buildConfigurationList = 7F2C6142D203482A9ECBB6F8 /* Build configuration list for PBXProject "l1t-macros" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				A0AFFA19EBFF4B2BB972210B /* Debug */,
+				BBFEEE4C03184F7183D30915 /* Release */,
+				90F16CF13BB34177843AAB07 /* MinSizeRel */,
+				813AC39711144C4ABD17283C /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = 99995809781142528C8E892E;
+			projectDirPath = .;
+			projectRoot = "";
+			targets = (
+				2F5E81C79E46473088388922 /* ALL_BUILD */,
+				8C99B9F292C549EFA9362243 /* ZERO_CHECK */,
+				CFA24F16D6BC40EDA3D09880 /* l1t-macros */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		22F30F75D305442799EA01D4 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		88432F69FA044B178263C47E /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/alex/Documents/l1t-macros -f /Users/alex/Documents/l1t-macros/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		D077D2955F9A49E39C7B68E1 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		E2368059C8DA44C8B03942B3 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/alex/Documents/l1t-macros -f /Users/alex/Documents/l1t-macros/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2B202545110B48A1A599B3F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65DDF1115ED04F3682CEE4C3 /* /Users/alex/Documents/l1t-macros/makeJetResolutions.cxx */,
+				CCCBB927DEDC484BB35BBEA7 /* /Users/alex/Documents/l1t-macros/makeJetTurnons.cxx */,
+				5CB8D8CA768D40A0B8D3BCC4 /* /Users/alex/Documents/l1t-macros/makeJetXvsY.cxx */,
+				B3F5A17E26B241A281B39D05 /* /Users/alex/Documents/l1t-macros/makeResolutions.cxx */,
+				D3E25E9BAAE2448892A587EA /* /Users/alex/Documents/l1t-macros/makeTurnons.cxx */,
+				CC84CADE89E147448FC9D6E7 /* /Users/alex/Documents/l1t-macros/makeXvsY.cxx */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		192CC40543044C2EB01E1870 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C99B9F292C549EFA9362243 /* ZERO_CHECK */;
+			targetProxy = 32624D0CD4A24E09A9B72493 /* PBXContainerItemProxy */;
+		};
+		BE1E70974FBD4BA8B1CF647D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C99B9F292C549EFA9362243 /* ZERO_CHECK */;
+			targetProxy = 58E145B4323540AEB4CAC6B8 /* PBXContainerItemProxy */;
+		};
+		F41F19769DA44C66A5ED7869 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CFA24F16D6BC40EDA3D09880 /* l1t-macros */;
+			targetProxy = 9C402BC3B8894A3F9A91C93B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0F0BCDA6F516492BA4F6F0F2 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/alex/Documents/l1t-macros/Event", "/Users/alex/Documents/l1t-macros/Plotting", "/Users/alex/Documents/l1t-macros/Tests", "/Users/alex/Documents/l1t-macros/Utilities", );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/alex/Documents/l1t-macros";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+		2763380F724B435383520294 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk;
+				SYMROOT = "/Users/alex/Documents/l1t-macros/build";
+			};
+			name = MinSizeRel;
+		};
+		2AAD0171A6204135824E0F50 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/alex/Documents/l1t-macros/Event", "/Users/alex/Documents/l1t-macros/Plotting", "/Users/alex/Documents/l1t-macros/Tests", "/Users/alex/Documents/l1t-macros/Utilities", );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/alex/Documents/l1t-macros";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+		3847756B70014C8BA8F0089D /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", G4ANALYSIS_USE_ROOT, );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/alex/Documents/l1t-macros/Event", "/Users/alex/Documents/l1t-macros/Plotting", "/Users/alex/Documents/l1t-macros/Tests", "/Users/alex/Documents/l1t-macros/Utilities", );
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=gnu++11'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "l1t-macros";
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/alex/Documents/l1t-macros";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+		6053B266945F4602A2C7ADEE /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/alex/Documents/l1t-macros/Event", "/Users/alex/Documents/l1t-macros/Plotting", "/Users/alex/Documents/l1t-macros/Tests", "/Users/alex/Documents/l1t-macros/Utilities", );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/alex/Documents/l1t-macros";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = MinSizeRel;
+		};
+		6C37BFFB420E4810AEC0A050 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", G4ANALYSIS_USE_ROOT, );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/alex/Documents/l1t-macros/Event", "/Users/alex/Documents/l1t-macros/Plotting", "/Users/alex/Documents/l1t-macros/Tests", "/Users/alex/Documents/l1t-macros/Utilities", );
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=gnu++11'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "l1t-macros";
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/alex/Documents/l1t-macros";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		78DA4F3CC07C44CABCF1B4D9 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", G4ANALYSIS_USE_ROOT, );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/alex/Documents/l1t-macros/Event", "/Users/alex/Documents/l1t-macros/Plotting", "/Users/alex/Documents/l1t-macros/Tests", "/Users/alex/Documents/l1t-macros/Utilities", );
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG '-std=gnu++11'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "l1t-macros";
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/alex/Documents/l1t-macros";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+		A69A7388CB134DDBB0B665F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk;
+				SYMROOT = "/Users/alex/Documents/l1t-macros/build";
+			};
+			name = Release;
+		};
+		BA12B764110449B2BF4F3C2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/alex/Documents/l1t-macros/Event", "/Users/alex/Documents/l1t-macros/Plotting", "/Users/alex/Documents/l1t-macros/Tests", "/Users/alex/Documents/l1t-macros/Utilities", );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/alex/Documents/l1t-macros";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		BC47F8A73ECB46CDAE1C4123 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk;
+				SYMROOT = "/Users/alex/Documents/l1t-macros/build";
+			};
+			name = RelWithDebInfo;
+		};
+		C9A2B758C23246D592E8BFAC /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/alex/Documents/l1t-macros/Event", "/Users/alex/Documents/l1t-macros/Plotting", "/Users/alex/Documents/l1t-macros/Tests", "/Users/alex/Documents/l1t-macros/Utilities", );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/alex/Documents/l1t-macros";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = RelWithDebInfo;
+		};
+		D3BF779F042140FD883041FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/alex/Documents/l1t-macros/Event", "/Users/alex/Documents/l1t-macros/Plotting", "/Users/alex/Documents/l1t-macros/Tests", "/Users/alex/Documents/l1t-macros/Utilities", );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/alex/Documents/l1t-macros";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		F151935FC1D542F7B57BAF74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/alex/Documents/l1t-macros/Event", "/Users/alex/Documents/l1t-macros/Plotting", "/Users/alex/Documents/l1t-macros/Tests", "/Users/alex/Documents/l1t-macros/Utilities", );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/alex/Documents/l1t-macros";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Release;
+		};
+		FD0C6E6E76DF4C66ACE510EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/alex/Documents/l1t-macros/Event", "/Users/alex/Documents/l1t-macros/Plotting", "/Users/alex/Documents/l1t-macros/Tests", "/Users/alex/Documents/l1t-macros/Utilities", );
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/alex/Documents/l1t-macros";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		FFC03A3E906949968ABB2562 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", G4ANALYSIS_USE_ROOT, );
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/alex/Documents/l1t-macros/Event", "/Users/alex/Documents/l1t-macros/Plotting", "/Users/alex/Documents/l1t-macros/Tests", "/Users/alex/Documents/l1t-macros/Utilities", );
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CPLUSPLUSFLAGS = "   '-std=gnu++11'  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "l1t-macros";
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/alex/Documents/l1t-macros";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", "$(inherited)", );
+			};
+			name = Debug;
+		};
+		FFCD7D287E7B4018997551B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk;
+				SYMROOT = "/Users/alex/Documents/l1t-macros/build";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		22B572F1085D4DA2A3F803B9 /* Build configuration list for PBXNativeTarget "l1t-macros" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFC03A3E906949968ABB2562 /* Debug */,
+				6C37BFFB420E4810AEC0A050 /* Release */,
+				3847756B70014C8BA8F0089D /* MinSizeRel */,
+				78DA4F3CC07C44CABCF1B4D9 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5F8E7EF5878A4547AE07F09B /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA12B764110449B2BF4F3C2C /* Debug */,
+				D3BF779F042140FD883041FB /* Release */,
+				0F0BCDA6F516492BA4F6F0F2 /* MinSizeRel */,
+				2AAD0171A6204135824E0F50 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7F2C6142D203482A9ECBB6F8 /* Build configuration list for PBXProject "l1t-macros" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFCD7D287E7B4018997551B6 /* Debug */,
+				A69A7388CB134DDBB0B665F0 /* Release */,
+				2763380F724B435383520294 /* MinSizeRel */,
+				BC47F8A73ECB46CDAE1C4123 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A01A7736199745F0A36899F7 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD0C6E6E76DF4C66ACE510EE /* Debug */,
+				F151935FC1D542F7B57BAF74 /* Release */,
+				6053B266945F4602A2C7ADEE /* MinSizeRel */,
+				C9A2B758C23246D592E8BFAC /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8BB2A232C777456EA13362ED /* Project object */;
+}

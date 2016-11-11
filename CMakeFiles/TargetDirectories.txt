@@ -1,0 +1,3 @@
+/Users/alex/Documents/l1t-macros/CMakeFiles/ZERO_CHECK.dir
+/Users/alex/Documents/l1t-macros/CMakeFiles/ALL_BUILD.dir
+/Users/alex/Documents/l1t-macros/CMakeFiles/l1t-macros.dir
