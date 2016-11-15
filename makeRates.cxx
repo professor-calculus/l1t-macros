@@ -10,7 +10,7 @@
 std::vector<double> metBins();
 void SetMyStyle(int palette, double rmarg, TStyle * myStyle);
 
-void makeRates(std::string run)
+void makeRates(std::string run, double cut_et, int cut_ieta)
 {
     TStyle * myStyle(new TStyle(TDRStyle()));
     SetMyStyle(55, 0.08, myStyle);
@@ -25,7 +25,7 @@ void makeRates(std::string run)
 //    std::string puFilename = "/afs/cern.ch/work/a/atittert/L1SingleMuonRates/PU.root";
 
 
-    std::string outDirBase = Form("%s",run.c_str());
+/*    std::string outDirBase = Form("%s",run.c_str());
 
     //std::string startstring = "/eos/cms/store/group/dpg_trigger/comm_trigger/L1Trigger/L1Menu2016/Stage2/Collision2016-wRECO-l1t-integration-v86p4/SingleMuon/crab_Collision2016-wRECO-l1t-integration-v86p4__";
 
@@ -35,9 +35,10 @@ void makeRates(std::string run)
     std::string runstring = outDirBase;
     size_t pos2 = runstring.find("_");
     size_t endofstring = runstring.length();
-    runstring.erase(pos2,endofstring);
-
-    runstring = "281639";
+    runstring.erase(pos2,endofstring);                      // NOT GOOD FOR AARON'S NTUPLES! Useful for when we have ntuples from
+*/                                                          // usual /eos locations where run # preceeded by "__"
+    
+    std::string runstring = "281639";
 
     std::string outDirtot = "/afs/cern.ch/work/a/atittert/private/L1_ZB_emu_recalc_iet_4_ieta_26/aaron_new";
 
@@ -56,7 +57,7 @@ void makeRates(std::string run)
     inDir.push_back(Form("root://eoscms.cern.ch/%s",run.c_str()));
 
     std::string outDir = outDirtot+"/"+TL1DateTime::GetDate()+"_"+sampleName+"_"+triggerName+"/rates/";
-    TL1EventClass * event(new TL1EventClass(inDir));
+    TL1EventClass * event(new TL1EventClass(inDir, cut_et, cut_ieta));
     std::vector<TL1Rates*> rates;
 
     // l1 MET BE

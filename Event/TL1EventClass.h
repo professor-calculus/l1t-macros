@@ -12,7 +12,7 @@
 class TL1EventClass
 {
     public:
-        TL1EventClass(std::vector<std::string> inDir);
+        TL1EventClass(std::vector<std::string> inDir, double cut_et, int cut_ieta);
 
         bool Next();
         void GetEntry(int i);
@@ -65,7 +65,7 @@ class TL1EventClass
         void SumsFilter();
 
         // Recalc L1 MET sum
-        void GetRecalcL1Met();
+        void GetRecalcL1Met(double cut_et, int cut_ieta);
 
         // Recalc L1 Ht/Et Sums
         void GetRecalcL1Mht();
@@ -117,7 +117,7 @@ void TL1EventClass::GetDerivatives()
     if( fPrimitiveEvent->fIsMetFilterReco ) this->SumsFilter();
 
     // Recalc
-    if( fPrimitiveEvent->fIsCaloTower ) this->GetRecalcL1Met();
+    if( fPrimitiveEvent->fIsCaloTower ) this->GetRecalcL1Met(cut_et, cut_ieta);
     //this->GetRecalcL1Mht();
     //this->GetRecalcL1Ett();
     
@@ -333,7 +333,7 @@ void TL1EventClass::GetRecalcL1Ett()
     //fNJetsL1Ett = jetCount;
 }
 
-void TL1EventClass::GetRecalcL1Met()
+void TL1EventClass::GetRecalcL1Met(double cut_et, int cut_ieta)
 {
     TVector2 met(0.0,0.0), metHF(0.0,0.0);
     auto caloTowers = fPrimitiveEvent->fCaloTowers;
@@ -347,8 +347,8 @@ void TL1EventClass::GetRecalcL1Met()
         TVector2 temp(0.0,0.0);
         temp.SetMagPhi(et,phi);
 
-        if( abs(ieta) <= 26 && et > 2 ) met -= temp;
-        metHF -= temp;
+        if( abs(ieta) <= cut_ieta && et > cut_et ) met -= temp;
+        if( et > cut_et ) metHF -= temp;
     }
     fRecalcL1Met = met.Mod();
     fRecalcL1MetPhi = met.Phi();

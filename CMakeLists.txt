@@ -35,7 +35,7 @@ include_directories(${PROJECT_SOURCE_DIR}/Event ${PROJECT_SOURCE_DIR}/Plotting $
 # NB: headers are included so they will show up in IDEs
 #
 file(GLOB sources ${PROJECT_SOURCE_DIR}/*.cxx)
-file(GLOB headers ${PROJECT_SOURCE_DIR}/*/*.h)
+file(GLOB headers ${PROJECT_SOURCE_DIR}/*/*.h ${PROJECT_SOURCE_DIR}/*/*.C)
 
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
