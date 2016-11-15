@@ -14,9 +14,9 @@ class TL1EventClass
     public:
         TL1EventClass(std::vector<std::string> inDir, double cut_et, int cut_ieta);
 
-        bool Next();
-        void GetEntry(int i);
-        void GetDerivatives();
+        bool Next(double cut_et, int cut_ieta);
+        void GetEntry(int i, double cut_et, int cut_ieta);
+        void GetDerivatives(double cut_et, int cut_ieta);
 
         TL1PrimitiveEventClass const * GetPEvent() const;
 
@@ -89,20 +89,20 @@ TL1EventClass::TL1EventClass(std::vector<std::string> inDir, double cut_et, int 
 {
 }
 
-bool TL1EventClass::Next()
+bool TL1EventClass::Next(double cut_et, int cut_ieta)
 {
     bool isNext = fPrimitiveEvent->Next();
-    this->GetDerivatives();
+    this->GetDerivatives(cut_et, cut_ieta);
     return isNext;
 }
 
-void TL1EventClass::GetEntry(int i)
+void TL1EventClass::GetEntry(int i, double cut_et, int cut_ieta)
 {
     fPrimitiveEvent->GetEntry(i);
-    this->GetDerivatives();
+    this->GetDerivatives(cut_et, cut_ieta);
 }
 
-void TL1EventClass::GetDerivatives()
+void TL1EventClass::GetDerivatives(double cut_et, int cut_ieta)
 {
     // L1
     bool isUpgrade = fPrimitiveEvent->fIsUpgrade;
