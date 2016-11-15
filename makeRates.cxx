@@ -87,7 +87,7 @@ void makeRates(std::string run, double cut_et, int cut_ieta)
     }
 
     unsigned NEntries = event->GetPEvent()->GetNEntries();
-    while( event->Next() )
+    while( event->Next(cut_et, cut_ieta) )
     {
         unsigned position = event->GetPEvent()->GetPosition()+1;
         TL1Progress::PrintProgressBar(position, NEntries);
