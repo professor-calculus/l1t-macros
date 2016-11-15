@@ -40,7 +40,7 @@ void makeRates(std::string run, double cut_et, int cut_ieta)
     
     std::string runstring = "281639";
 
-    std::string outDirtot = "/afs/cern.ch/work/a/atittert/private/L1_ZB_emu_recalc_iet_4_ieta_26/aaron_new";
+    std::string outDirtot = "/afs/cern.ch/work/a/atittert/private/dev_rates_scripts/ZB_emu_recalc_iet_" + cut_et + "_ieta_"+cut_ieta + "/aaron_new";
 
     //std::string run = "281613_161005";
     //std::string outDirtot = "/afs/cern.ch/work/a/atittert/private/SM_Rates_Post_Calibration_Emu";
