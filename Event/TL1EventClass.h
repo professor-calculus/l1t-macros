@@ -81,7 +81,7 @@ class TL1EventClass
 
 };
 
-TL1EventClass::TL1EventClass(std::vector<std::string> inDir) :
+TL1EventClass::TL1EventClass(std::vector<std::string> inDir, double cut_et, int cut_ieta) :
     fPrimitiveEvent(new TL1PrimitiveEventClass(inDir)),
     fMuonFilterPassFlag(true), fMetFilterPassFlag(true),
     fMhtPassFlag(true),
