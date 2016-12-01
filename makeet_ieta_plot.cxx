@@ -80,7 +80,7 @@ void makeet_ieta_plot(std::string run, double cut_et, int cut_ieta)
     et_ieta_plots.emplace_back(new TL1et_ieta_plot());
     et_ieta_plots[1]->SetX("et_density_vs_ieta","ieta");
     et_ieta_plots[1]->SetXBins(puBins);
-    et_ieta_plots[0]->SetYBins(etbins);
+    et_ieta_plots[1]->SetYBins(etbins);
     et_ieta_plots[1]->SetOutName(triggerName+"_et_density_vs_ieta");
     
     std::vector<int> metbins = {0,10,20,30,40,50,99999};
