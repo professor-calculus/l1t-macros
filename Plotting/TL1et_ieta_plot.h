@@ -43,14 +43,14 @@ private:
 void TL1et_ieta_plot::InitPlots()
 {
     fRootFile = TFile::Open(Form("%s/et_ieta_plot_%s.root", this->GetOutDir().c_str(), this->GetOutName().c_str()), "RECREATE");
-    fPlot.emplace_back(new TH1F(Form("rates_%s",fXName.c_str()),"", fXBins.size()-1,&(fXBins)[0]));
+    fPlot.emplace_back(new TH2F(Form("rates_%s",fXName.c_str()),"", fXBins.size()-1,&(fXBins)[0]));
     fPlot.back()->Sumw2();
     fPlot.back()->SetDirectory(0);
     fPlot.back()->GetXaxis()->SetTitle(fXTitle.c_str());
     fPlot.back()->GetYaxis()->SetTitle("et / GeV");
     for(int ipu=0; ipu<this->GetPuType().size(); ++ipu)
     {
-        fPlot.emplace_back(new TH1F(Form("rates_%s_%s",fXName.c_str(),this->GetPuType()[ipu].c_str()),"", fXBins.size()-1,&(fXBins)[0]));
+        fPlot.emplace_back(new TH2F(Form("rates_%s_%s",fXName.c_str(),this->GetPuType()[ipu].c_str()),"", fXBins.size()-1,&(fXBins)[0]));
         fPlot.back()->Sumw2();
         fPlot.back()->SetDirectory(0);
         fPlot.back()->GetXaxis()->SetTitle(fXTitle.c_str());
