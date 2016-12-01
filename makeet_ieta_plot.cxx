@@ -67,13 +67,13 @@ void makeet_ieta_plot(std::string run, double cut_et, int cut_ieta)
     std::vector<TL1et_ieta_plot*> et_ieta_plots;
     
     // et vs ieta
-    et_ieta_plots.emplace_back(new TL1Rates());
+    et_ieta_plots.emplace_back(new TL1et_ieta_plot());
     et_ieta_plots[0]->SetX("et_vs_ieta","ieta");
     et_ieta_plots[0]->SetXBins(puBins);
     et_ieta_plots[0]->SetOutName(triggerName+"_et_vs_ieta");
     
     // et density vs ieta
-    et_ieta_plots.emplace_back(new TL1Rates());
+    et_ieta_plots.emplace_back(new TL1et_ieta_plot());
     et_ieta_plots[1]->SetX("et_density_vs_ieta","ieta");
     et_ieta_plots[1]->SetXBins(puBins);
     et_ieta_plots[1]->SetOutName(triggerName+"_et_density_vs_ieta");
@@ -105,7 +105,7 @@ void makeet_ieta_plot(std::string run, double cut_et, int cut_ieta)
         //	double l1EmuMetBE = event->fL1EmuMet;
         //      double l1EmuMetHF = event->fL1EmuMetHF;
         
-        for(int j=0; j<et_ieta.Size(); j++)
+        for(int j=0; j<et_ieta.size(); j++)
         {
             et_ieta_plots[0]->Fill(et_ieta[j][0], et_ieta[j][1], pu);
         

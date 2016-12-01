@@ -20,10 +20,10 @@ public:
     ~TL1et_ieta_plot();
     
     virtual void InitPlots();
-    virtual void Fill(const double & xVal, const double & yVal, const int & pu=0);
+    virtual void Fill(const double & xVal, const double & yVal, const int & nVtxVal);
     virtual void DrawPlots();
     TH1F * GetCumulative(TH1F * plot);
-    void PlotE2(TH1F * plot, bool puOn);
+    void PlotE2(TH2F * plot, bool puOn);
     void DrawCmsStamp();
     
     void SetX(const std::string & xName, const std::string & xTitle);
@@ -91,18 +91,18 @@ void TL1et_ieta_plot::DrawPlots()
         PlotE2(fPlot[ipu], true);
         //can2->SetLogy();
         
-        std::stringstream entryName;
-        if( ipu<this->GetPuType().size()-1 ) entryName << this->GetPuBins()[ipu] << " #leq PU < " << this->GetPuBins()[ipu+1];
-        else entryName << this->GetPuBins()[ipu] << " #leq PU";
-        leg2->AddEntry(fPuCumulative, entryName.str().c_str());
-        entryName.str("");
+//        std::stringstream entryName;
+//        if( ipu<this->GetPuType().size()-1 ) entryName << this->GetPuBins()[ipu] << " #leq PU < " << this->GetPuBins()[ipu+1];
+//        else entryName << this->GetPuBins()[ipu] << " #leq PU";
+//        leg2->AddEntry(fPuCumulative, entryName.str().c_str());
+//        entryName.str("");
     }
     //can2->SetLogy();
     can2->Update();
     DrawCmsStamp();
     can2->Update();
-    leg2->Draw();
-    can2->Update();
+//    leg2->Draw();
+//    can2->Update();
     
 //    outName = Form("%s/et_iet_plot_%s_Bins.pdf", this->GetOutDir().c_str(), this->GetOutName().c_str());
 //    can2->SaveAs(outName.c_str());
