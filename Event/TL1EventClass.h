@@ -28,7 +28,7 @@ class TL1EventClass
         std::vector<double> fL1JetEt, fL1JetPhi, fL1JetEta;
     
         //et_ieta
-        std::vector< std::vector<double> > TL1EventClass::GetEtVsiEta();
+        std::vector< std::vector<double> > GetEtVsiEta();
     
         // Filter flags
         bool fMuonFilterPassFlag, fMetFilterPassFlag;
