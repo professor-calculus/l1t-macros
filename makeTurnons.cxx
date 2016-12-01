@@ -15,7 +15,7 @@ vector<double> ettBins();
 vector<double> httBins();
 void SetMyStyle(int palette, double rmarg, TStyle * myStyle);
 
-void makeTurnons(std::string run)
+void makeTurnons(std::string run, double cut_et, int cut_ieta)
 {
     TStyle * myStyle(new TStyle(TDRStyle()));
     SetMyStyle(55, 0.07, myStyle);
@@ -119,8 +119,8 @@ void makeTurnons(std::string run)
         int pu = event->GetPEvent()->fVertex->nVtx;
         auto sums = event->GetPEvent()->fSums;
 
-        double l1EmuMetBE = event->fL1EmuMet;
-        double l1EmuMetHF = event->fL1EmuMetHF;
+        double l1EmuMetBE = event->fRecalcL1Met;
+        double l1EmuMetHF = event->fRecalcL1MetHF;
         double caloMetBE = sums->caloMetBE;
         double caloMetHF = sums->caloMet;
 

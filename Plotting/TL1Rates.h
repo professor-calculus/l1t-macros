@@ -75,6 +75,7 @@ void TL1Rates::DrawPlots()
 {
     TCanvas * can(new TCanvas(Form("can_%d",this->GetRnd()),""));
     TH1F * fCumulative = GetCumulative(fPlot[0]);
+    TH1F * fRatio =
     
     double bin1 = fCumulative->GetBinContent(1);
     fCumulative->Scale(4.0e7/bin1);
@@ -101,9 +102,9 @@ void TL1Rates::DrawPlots()
     TLegend * leg2(new TLegend(0.65,0.55,0.88,0.55+0.05*this->GetPuType().size()));
     for(int ipu=0; ipu<this->GetPuType().size(); ++ipu)
     {
-	fPlot[ipu+1]->Divide(fPlot[0]); 
+        fPlot[ipu+1]->Divide(fPlot[0]); 
 
-	TH1F * fPuCumulative = GetCumulative(fPlot[ipu+1]);
+        TH1F * fPuCumulative = GetCumulative(fPlot[ipu+1]);
 
         bin1 = fPuCumulative->GetBinContent(1);
         fPuCumulative->Scale(4.0e7/bin1);

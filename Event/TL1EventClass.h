@@ -356,6 +356,28 @@ void TL1EventClass::GetRecalcL1Met(double cut_et, int cut_ieta)
     fRecalcL1MetPhiHF = metHF.Phi();
 }
 
+std::vector< std::vector<double> > TL1EventClass::GetEtVsiEta()
+{
+    auto caloTowers = fPrimitiveEvent->fCaloTowers;
+    int ieta(0);
+    double et;
+    std::vector< vector<double> > et_vs_ieta;
+    vector<double> et_ieta;
+    et_ieta.push_back(et);
+    et_ieta.push_back(ieta);
+    double phi(0.0), et(0.0);
+    for(int jTower=0; jTower<caloTowers->nTower; ++jTower)
+    {
+        ieta = caloTowers->ieta[jTower];
+        phi = (TMath::Pi()/36.0) * (double)caloTowers->iphi[jTower];
+        et = 0.5 * (double)caloTowers->iet[jTower];
+        et_ieta[0] = et;
+        et_ieta[1] = ieta;
+        et_vs_ieta.push_back(et_ieta);
+    }
+    return et_vs_ieta;
+}
+
 void TL1EventClass::GetRecalcRecoHtSums()
 {
     TVector2 * mht(new TVector2(0.,0.));
