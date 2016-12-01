@@ -52,6 +52,9 @@ void makeet_ieta_plot(std::string run, double cut_et, int cut_ieta)
     
     std::vector<double> eta_values = {0.,0.087,0.174,0.261,0.348,0.435,0.522,0.609,0.695,0.783,0.87,0.957,1.044,1.131,1.218,1.305,1.392,1.479,1.566,1.653,1.74,1.83,1.93,2.043,2.172,2.322,2.5,2.65,3.0};
     
+    std::vector<int> etbins = {5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80};
+
+    
     std::vector<std::string> inDir;
     // inDir.push_back("/afs/cern.ch/work/s/sbreeze/public/jets_and_sums/160704_SingleMu2016Bv1_l1t-int-v67p0");
     //inDir.push_back("root://eoscms.cern.ch//eos/cms/store/group/dpg_trigger/comm_trigger/L1Trigger/L1Menu2016/Stage2/Collision2016-wRECO-l1t-integration-v86p4/SingleMuon/crab_Collision2016-wRECO-l1t-integration-v86p4__281613_SingleMuon/161005_194102/0000");
@@ -70,12 +73,14 @@ void makeet_ieta_plot(std::string run, double cut_et, int cut_ieta)
     et_ieta_plots.emplace_back(new TL1et_ieta_plot());
     et_ieta_plots[0]->SetX("et_vs_ieta","ieta");
     et_ieta_plots[0]->SetXBins(puBins);
+    et_ieta_plots[0]->SetYBins(etbins);
     et_ieta_plots[0]->SetOutName(triggerName+"_et_vs_ieta");
     
     // et density vs ieta
     et_ieta_plots.emplace_back(new TL1et_ieta_plot());
     et_ieta_plots[1]->SetX("et_density_vs_ieta","ieta");
     et_ieta_plots[1]->SetXBins(puBins);
+    et_ieta_plots[0]->SetYBins(etbins);
     et_ieta_plots[1]->SetOutName(triggerName+"_et_density_vs_ieta");
     
     std::vector<int> metbins = {0,10,20,30,40,50,99999};

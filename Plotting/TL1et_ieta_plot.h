@@ -29,6 +29,7 @@ public:
     
     void SetX(const std::string & xName, const std::string & xTitle);
     void SetXBins(const std::vector<double> & xBins);
+    void SetYBins(const std::vector<double> & yBins);
     
 private:
     std::vector<TH2F*> fPlot;
@@ -37,20 +38,21 @@ private:
     
     std::string fXName, fXTitle;
     std::vector<double> fXBins;
+    std::vector<double> fYBins;
     
 };
 
 void TL1et_ieta_plot::InitPlots()
 {
     fRootFile = TFile::Open(Form("%s/et_ieta_plot_%s.root", this->GetOutDir().c_str(), this->GetOutName().c_str()), "RECREATE");
-    fPlot.emplace_back(new TH2F(Form("rates_%s",fXName.c_str()),"", fXBins.size()-1,&(fXBins)[0]));
+    fPlot.emplace_back(new TH2F(Form("et_ieta_plot_%s",fXName.c_str()),"", fXBins.size()-1,&(fXBins)[0], fYBins.size()-1,&(fYBins)[0]));
     fPlot.back()->Sumw2();
     fPlot.back()->SetDirectory(0);
     fPlot.back()->GetXaxis()->SetTitle(fXTitle.c_str());
     fPlot.back()->GetYaxis()->SetTitle("et / GeV");
-    for(int ipu=0; ipu<this->GetPuType().size(); ++ipu)
+    for(int ipu=1; ipu<this->GetPuType().size(); ++ipu)
     {
-        fPlot.emplace_back(new TH2F(Form("rates_%s_%s",fXName.c_str(),this->GetPuType()[ipu].c_str()),"", fXBins.size()-1,&(fXBins)[0]));
+        fPlot.emplace_back(new TH2F(Form("et_ieta_plot_%s_%s",fXName.c_str(),this->GetPuType()[ipu].c_str()),"", fXBins.size()-1,&(fXBins)[0], fYBins.size()-1,&(fYBins)[0]));
         fPlot.back()->Sumw2();
         fPlot.back()->SetDirectory(0);
         fPlot.back()->GetXaxis()->SetTitle(fXTitle.c_str());
@@ -176,6 +178,10 @@ void TL1et_ieta_plot::SetX(const std::string & xName, const std::string & xTitle
 void TL1et_ieta_plot::SetXBins(const std::vector<double> & xBins)
 {
     fXBins = xBins;
+}
+void TL1et_ieta_plot::SetYBins(const std::vector<double> & yBins)
+{
+    fYBins = yBins;
 }
 
 #endif
