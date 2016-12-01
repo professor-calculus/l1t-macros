@@ -109,7 +109,7 @@ void TL1et_ieta_plot::DrawPlots()
 //    fRootFile->WriteTObject(can2);
 }
 
-TH1F * TL1et_ieta_plot::GetCumulative(TH2F * plot)
+TH2F * TL1et_ieta_plot::GetCumulative(TH2F * plot)
 {
     std::string newName = Form("cumulative_%s",plot->GetName());
     TH1F * temp = (TH1F*)plot->Clone(newName.c_str());
