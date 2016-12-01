@@ -26,7 +26,10 @@ class TL1EventClass
         double fL1MetHF, fL1MhtHF, fL1EttHF, fL1HttHF, fL1MetPhiHF, fL1MhtPhiHF;
         double fL1EmuMetHF, fL1EmuMhtHF, fL1EmuEttHF, fL1EmuHttHF, fL1EmuMetPhiHF, fL1EmuMhtPhiHF;
         std::vector<double> fL1JetEt, fL1JetPhi, fL1JetEta;
-
+    
+        //et_ieta
+        std::vector< std::vector<double> > TL1EventClass::GetEtVsiEta();
+    
         // Filter flags
         bool fMuonFilterPassFlag, fMetFilterPassFlag;
         std::vector<bool> fJetFilterPassFlags;
@@ -365,7 +368,7 @@ std::vector< std::vector<double> > TL1EventClass::GetEtVsiEta()
     vector<double> et_ieta;
     et_ieta.push_back(et);
     et_ieta.push_back(ieta);
-    double phi(0.0), et(0.0);
+    double phi(0.0);
     for(int jTower=0; jTower<caloTowers->nTower; ++jTower)
     {
         ieta = caloTowers->ieta[jTower];

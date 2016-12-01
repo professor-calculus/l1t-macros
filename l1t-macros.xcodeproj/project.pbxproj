@@ -106,7 +106,7 @@
 		E2479995EE2F4239A0085769 /* generatePUWeights.cxx */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = generatePUWeights.cxx; sourceTree = SOURCE_ROOT; };
 		E262A91150C446AEB58BBDF8 /* makeRates_old.cxx */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = makeRates_old.cxx; sourceTree = SOURCE_ROOT; };
 		FA33AAAD1DEF40CF002D0F5F /* makeet_ieta_plot.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = makeet_ieta_plot.cxx; sourceTree = "<group>"; };
-		FA33AAAF1DF036D9002D0F5F /* TL1et_ieta_plot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TL1et_ieta_plot.h; sourceTree = "<group>"; };
+		FA33AAB01DF050AC002D0F5F /* TL1et_ieta_plot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TL1et_ieta_plot.h; path = Plotting/TL1et_ieta_plot.h; sourceTree = "<group>"; };
 		FBD5525597EB482E9AA7EF07 /* makeJetTurnons.cxx */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = makeJetTurnons.cxx; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -187,7 +187,7 @@
 				6C392E157C4D40868D397037 /* TL1Plots.h */,
 				8C983C05F3144FF2AADAF0A8 /* TL1RateEfficiency.h */,
 				29E01F1ED7F1404B85FC24AB /* TL1Rates.h */,
-				FA33AAAF1DF036D9002D0F5F /* TL1et_ieta_plot.h */,
+				FA33AAB01DF050AC002D0F5F /* TL1et_ieta_plot.h */,
 				08A48D2C8E87492694C0DE83 /* TL1Resolution.h */,
 				32BABB36EACA4D2A88D52313 /* TL1Turnon.h */,
 				01729A1AA761402A84B906B3 /* TL1XvsY.h */,
