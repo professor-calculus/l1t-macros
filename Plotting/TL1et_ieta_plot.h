@@ -1,3 +1,6 @@
+#ifndef TL1ET_IETA_PLOT_H
+#define TL1ET_IETA_PLOT_H
+
 #include <string>
 #include <vector>
 #include <sstream>
@@ -110,7 +113,7 @@ void TL1et_ieta_plot::DrawPlots()
 TH2F * TL1et_ieta_plot::GetCumulative(TH2F * plot)
 {
     std::string newName = Form("cumulative_%s",plot->GetName());
-    TH1F * temp = (TH1F*)plot->Clone(newName.c_str());
+    TH2F * temp = (TH2F*)plot->Clone(newName.c_str());
     temp->SetDirectory(0);
     for(int i=0; i< plot->GetNbinsX()+1; ++i)
     {
