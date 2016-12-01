@@ -1,11 +1,9 @@
-#ifndef TL1ET_IETA_PLOT_H
-#define TL1ET_IETA_PLOT_H
-
 #include <string>
 #include <vector>
 #include <sstream>
 
 #include <TH1F.h>
+#include <TH2F.h>
 #include <TCanvas.h>
 #include <TLegend.h>
 #include <TFile.h>
