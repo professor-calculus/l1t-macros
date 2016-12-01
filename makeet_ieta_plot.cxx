@@ -114,9 +114,12 @@ void makeet_ieta_plot(std::string run, double cut_et, int cut_ieta)
         {
             et_ieta_plots[0]->Fill(et_ieta[j][0], et_ieta[j][1], pu);
         
-            eta_size = eta_values[j+1] - eta_values[j];
-            
-            et_ieta_plots[1]->Fill(et_ieta[j][0]/eta_size, et_ieta[j][1], pu);
+            if(et_ieta[j][1] < 29)
+            {
+                eta_size = eta_values[j+1] - eta_values[j];
+                
+                et_ieta_plots[1]->Fill(et_ieta[j][0]/eta_size, et_ieta[j][1], pu);
+            }
         }
     }
     
