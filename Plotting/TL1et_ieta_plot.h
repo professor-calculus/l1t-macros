@@ -108,8 +108,8 @@ void TL1et_ieta_plot::DrawPlots()
 //    can2->Update();
     
 //    outName = Form("%s/et_iet_plot_%s_Bins.pdf", this->GetOutDir().c_str(), this->GetOutName().c_str());
-//    can2->SaveAs(outName.c_str());
-//    fRootFile->WriteTObject(can2);
+    can2->SaveAs(outName.c_str());
+    fRootFile->WriteTObject(can2);
 }
 
 TH2F * TL1et_ieta_plot::GetCumulative(TH2F * plot)
@@ -133,19 +133,19 @@ TH2F * TL1et_ieta_plot::GetCumulative(TH2F * plot)
 
 void TL1et_ieta_plot::PlotE2(TH2F * plot, bool puOn)
 {
-    //plot->SetLineColor(plot->GetLineColor()+15);
-    //plot->SetFillColor(plot->GetLineColor()+15);
-    //plot->SetMarkerStyle(0);
-    //std::string extra = "";
-    //if( puOn ) extra = "same";
-    //plot->DrawCopy(Form("E2%s",extra.c_str()));
+    plot->SetLineColor(plot->GetLineColor()+15);
+    plot->SetFillColor(plot->GetLineColor()+15);
+    plot->SetMarkerStyle(0);
+    std::string extra = "";
+    if( puOn ) extra = "same";
+    plot->DrawCopy(Form("E2%s",extra.c_str()));
     
-    //plot->SetFillStyle(0);
-    //plot->SetLineColor(plot->GetLineColor()-15);
-    //plot->SetFillStyle(0);
-    //plot->SetLineWidth(2);
+    plot->SetFillStyle(0);
+    plot->SetLineColor(plot->GetLineColor()-15);
+    plot->SetFillStyle(0);
+    plot->SetLineWidth(2);
     plot->DrawCopy("colz");
-    //plot->SetFillStyle(1001);
+    plot->SetFillStyle(1001);
 }
 
 void TL1et_ieta_plot::DrawCmsStamp()
