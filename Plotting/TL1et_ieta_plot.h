@@ -107,8 +107,8 @@ void TL1et_ieta_plot::DrawPlots()
 //    leg2->Draw();
 //    can2->Update();
     
-    outName = Form("%s/et_iet_plot_%s_Bins.pdf", this->GetOutDir().c_str(), this->GetOutName().c_str());
-    can2->SaveAs(outName.c_str());
+    //outName = Form("%s/et_iet_plot_%s_Bins.pdf", this->GetOutDir().c_str(), this->GetOutName().c_str());
+    //can2->SaveAs(outName.c_str());
     fRootFile->WriteTObject(can2);
 }
 
