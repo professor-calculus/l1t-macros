@@ -63,9 +63,9 @@ void TL1et_ieta_plot::InitPlots()
 
 void TL1et_ieta_plot::Fill(const double & xVal, const double & yVal, const int & nVtxVal)
 {
-    //fPlot[0]->Fill(xVal,yVal);
+    fPlot[0]->Fill(xVal,yVal);
     
-    for(int ipu=0; ipu<this->GetPuType().size(); ++ipu)
+    for(int ipu=1; ipu<this->GetPuType().size(); ++ipu)
     {
         if( nVtxVal >= this->GetPuBins()[ipu] && nVtxVal < this->GetPuBins()[ipu] )
             fPlot[ipu]->Fill(xVal,yVal);
@@ -91,8 +91,11 @@ void TL1et_ieta_plot::DrawPlots()
 //        this->SetColor(fPuCumulative, ipu, this->GetPuType().size());
         fRootFile->WriteTObject(fPlot[ipu]);
         
-        PlotE2(fPlot[ipu], true);
-        //can2->SetLogy();
+        fPlot[ipu]->Draw("colz");
+        can2->Update();
+        string pdfname = "/afs/cern.ch/work/a/atittert/" + ipu + ".pdf";
+        can2->SaveAs(pdfname.c_str());
+       //can2->SetLogy();
         
 //        std::stringstream entryName;
 //        if( ipu<this->GetPuType().size()-1 ) entryName << this->GetPuBins()[ipu] << " #leq PU < " << this->GetPuBins()[ipu+1];
