@@ -91,7 +91,7 @@ void TL1et_ieta_plot::DrawPlots()
 //        this->SetColor(fPuCumulative, ipu, this->GetPuType().size());
         fRootFile->WriteTObject(fPlot[ipu]);
         
-        fPlot[ipu]->Draw("colz");
+        fPlot[ipu]->DrawCopy("colz");
         can2->Update();
         string pdfname = Form("%s/et_iet_plot_%i.pdf", this->GetOutDir().c_str(), ipu);
         can2->SaveAs(pdfname.c_str());
