@@ -93,7 +93,7 @@ void TL1et_ieta_plot::DrawPlots()
         
         fPlot[ipu]->Draw("colz");
         can2->Update();
-        string pdfname = Form("%s/et_iet_plot_%i.pdf", ipu);
+        string pdfname = Form("%s/et_iet_plot_%i.pdf", this->GetOutDir().c_str(), ipu);
         can2->SaveAs(pdfname.c_str());
        //can2->SetLogy();
         
