@@ -104,6 +104,7 @@ void makeet_ieta_plot(std::string run, double cut_et, int cut_ieta)
         TL1Progress::PrintProgressBar(position, NEntries);
         
         int pu = event->GetPEvent()->fVertex->nVtx;
+        std::cout << pu << endl;
         
         std::vector< std::vector<double> > et_ieta = event->GetEtVsiEta();
         

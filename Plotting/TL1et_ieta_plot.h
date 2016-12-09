@@ -46,14 +46,14 @@ void TL1et_ieta_plot::InitPlots()
 {
     fRootFile = TFile::Open(Form("%s/et_ieta_plot_%s.root", this->GetOutDir().c_str(), this->GetOutName().c_str()), "RECREATE");
     fPlot.emplace_back(new TH2F(Form("et_ieta_plot_%s",fXName.c_str()),"", fXBins.size()-1,&(fXBins)[0], fYBins.size()-1,&(fYBins)[0]));
-    fPlot.back()->Sumw2();
+    //fPlot.back()->Sumw2();
     fPlot.back()->SetDirectory(0);
     fPlot.back()->GetXaxis()->SetTitle(fXTitle.c_str());
     fPlot.back()->GetYaxis()->SetTitle("et / GeV");
-    for(int ipu=1; ipu<this->GetPuType().size(); ++ipu)
+    for(int ipu=0; ipu<this->GetPuType().size(); ++ipu)
     {
         fPlot.emplace_back(new TH2F(Form("et_ieta_plot_%s_%s",fXName.c_str(),this->GetPuType()[ipu].c_str()),"", fXBins.size()-1,&(fXBins)[0], fYBins.size()-1,&(fYBins)[0]));
-        fPlot.back()->Sumw2();
+        //fPlot.back()->Sumw2();
         fPlot.back()->SetDirectory(0);
         fPlot.back()->GetXaxis()->SetTitle(fXTitle.c_str());
         fPlot.back()->GetYaxis()->SetTitle("et / GeV");
@@ -65,10 +65,10 @@ void TL1et_ieta_plot::Fill(const double & xVal, const double & yVal, const int &
 {
     fPlot[0]->Fill(xVal,yVal);
     
-    for(int ipu=1; ipu<this->GetPuType().size(); ++ipu)
+    for(int ipu=0; ipu<this->GetPuType().size(); ++ipu)
     {
         if( nVtxVal >= this->GetPuBins()[ipu] && nVtxVal < this->GetPuBins()[ipu] )
-            fPlot[ipu]->Fill(xVal,yVal);
+            fPlot[ipu+1]->Fill(xVal,yVal);
         //fPlot[ipu+1]->Divide(fPlot[0]);
     }
 }
