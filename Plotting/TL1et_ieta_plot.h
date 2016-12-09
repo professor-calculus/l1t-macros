@@ -67,7 +67,7 @@ void TL1et_ieta_plot::Fill(const double & xVal, const double & yVal, const int &
     
     for(int ipu=0; ipu<this->GetPuType().size(); ++ipu)
     {
-        if( nVtxVal >= this->GetPuBins()[ipu] && nVtxVal < this->GetPuBins()[ipu] )
+        if( nVtxVal >= this->GetPuBins()[ipu] && nVtxVal < this->GetPuBins()[ipu+1] )
             fPlot[ipu+1]->Fill(xVal,yVal);
         //fPlot[ipu+1]->Divide(fPlot[0]);
     }
