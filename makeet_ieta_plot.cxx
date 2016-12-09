@@ -101,6 +101,12 @@ void makeet_ieta_plot(std::string run, double cut_et, int cut_ieta)
     while( event->Next(cut_et, cut_ieta) )
     {
         unsigned position = event->GetPEvent()->GetPosition()+1;
+        
+        if(position > 1000)
+        {
+            break;
+        }
+        
         TL1Progress::PrintProgressBar(position, NEntries);
         
         int pu = event->GetPEvent()->fVertex->nVtx;
