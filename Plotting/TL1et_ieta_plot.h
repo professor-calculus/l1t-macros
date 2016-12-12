@@ -61,7 +61,7 @@ void TL1et_ieta_plot::InitPlots()
     
 }
 
-void TL1et_ieta_plot::Fill(const double & xVal, const double & yVal, const int & nVtxVal)
+void TL1et_ieta_plot::Fill(const double & xVal, const double & yVal, const double & nVtxVal)
 {
     fPlot[0]->Fill(xVal,yVal);
     

@@ -50,6 +50,7 @@
 		C51ED6FCE77F46648569C208 /* TL1Progress.C in Sources */ = {isa = PBXBuildFile; fileRef = 1C2C03AE1F524813BA1E99E4 /* TL1Progress.C */; settings = {COMPILER_FLAGS = ""; }; };
 		F11E9FCCF90546A9902DD54F /* feature_tests.c in Sources */ = {isa = PBXBuildFile; fileRef = 325D652EFAF142D8AE190569 /* feature_tests.c */; settings = {COMPILER_FLAGS = ""; }; };
 		FA33AAAE1DEF40CF002D0F5F /* makeet_ieta_plot.cxx in Sources */ = {isa = PBXBuildFile; fileRef = FA33AAAD1DEF40CF002D0F5F /* makeet_ieta_plot.cxx */; };
+		FA6AF43F1DFEBE7F00A32F4C /* makeet_nVtx_plot.cxx in Sources */ = {isa = PBXBuildFile; fileRef = FA6AF43E1DFEBE7F00A32F4C /* makeet_nVtx_plot.cxx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		E262A91150C446AEB58BBDF8 /* makeRates_old.cxx */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = makeRates_old.cxx; sourceTree = SOURCE_ROOT; };
 		FA33AAAD1DEF40CF002D0F5F /* makeet_ieta_plot.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = makeet_ieta_plot.cxx; sourceTree = "<group>"; };
 		FA33AAB01DF050AC002D0F5F /* TL1et_ieta_plot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TL1et_ieta_plot.h; path = Plotting/TL1et_ieta_plot.h; sourceTree = "<group>"; };
+		FA6AF43E1DFEBE7F00A32F4C /* makeet_nVtx_plot.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = makeet_nVtx_plot.cxx; sourceTree = "<group>"; };
 		FBD5525597EB482E9AA7EF07 /* makeJetTurnons.cxx */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = makeJetTurnons.cxx; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -140,6 +142,7 @@
 				03C929EB174E46DCB847950C /* makeRateEfficiency.cxx */,
 				0D849B32781F4711A981FC5C /* makeRates.cxx */,
 				FA33AAAD1DEF40CF002D0F5F /* makeet_ieta_plot.cxx */,
+				FA6AF43E1DFEBE7F00A32F4C /* makeet_nVtx_plot.cxx */,
 				E262A91150C446AEB58BBDF8 /* makeRates_old.cxx */,
 				7EAB591A57C0428BB3971C3A /* makeResolutions.cxx */,
 				369777EFB2674C3C91378E49 /* makeTurnons.cxx */,
@@ -308,6 +311,7 @@
 				7DC8033BAC984561A1171FD0 /* testTL1DrawTurnon.C in Sources */,
 				16987A9D8C024929B124B878 /* TL1DateTime.C in Sources */,
 				C51ED6FCE77F46648569C208 /* TL1Progress.C in Sources */,
+				FA6AF43F1DFEBE7F00A32F4C /* makeet_nVtx_plot.cxx in Sources */,
 				FA33AAAE1DEF40CF002D0F5F /* makeet_ieta_plot.cxx in Sources */,
 				74F1B5B91D6A4215AB2A10DD /* generatePUWeights.cxx in Sources */,
 				070F11ACFD9F42EA97539DF8 /* makeJetResolutions.cxx in Sources */,
