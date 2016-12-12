@@ -21,7 +21,7 @@ public:
     ~TL1et_ieta_plot();
     
     virtual void InitPlots();
-    virtual void Fill(const double & xVal, const double & yVal, const int & nVtxVal);
+    virtual void Fill(const double & xVal, const double & yVal, const double & nVtxVal);
     virtual void DrawPlots();
     TH2F * GetCumulative(TH2F * plot);
     void PlotE2(TH2F * plot, bool puOn);
