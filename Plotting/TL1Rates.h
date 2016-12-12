@@ -20,7 +20,7 @@ class TL1Rates : public TL1Plots
         ~TL1Rates();
         
         virtual void InitPlots();
-        virtual void Fill(const double & xVal, const double & yVal, const int & pu=0);
+        virtual void Fill(const double & xVal, const double & yVal, const double & pu=0);
         virtual void DrawPlots();
         TH1F * GetCumulative(TH1F * plot);
         void PlotE2(TH1F * plot, bool puOn);
@@ -58,7 +58,7 @@ void TL1Rates::InitPlots()
 
 }
 
-void TL1Rates::Fill(const double & xVal, const double & yVal, const int & pu=0)
+void TL1Rates::Fill(const double & xVal, const double & yVal, const double & pu=0)
 {
     fPlot[0]->Fill(xVal,this->GetPuWeight(pu));
     histMET->Fill(yVal);
