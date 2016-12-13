@@ -64,7 +64,7 @@ void makeTurnons(std::string run, double cut_et, int cut_ieta)
 
     std::string outDir = outDirtot+"/"+TL1DateTime::GetDate()+"_"+sampleName+"_"+"run-"+run+"_"+triggerName+"/Turnons/";
     // std::string outDir = outDirBase+"/"+TL1DateTime::GetDate()+"_MC_"+sampleName+"_MET+HF/Turnons/";
-    TL1EventClass * event(new TL1EventClass(inDir));
+    TL1EventClass * event(new TL1EventClass(inDir, cut_et, cut_ieta));
     std::vector<TL1Turnon*> turnons;
 
     // caloMetBE and l1MetBE seeds
