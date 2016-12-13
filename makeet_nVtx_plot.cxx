@@ -43,8 +43,7 @@ void makeet_nVtx_plot(std::string run, double cut_et, int cut_ieta)
     
     std::string outDirtot = "/afs/cern.ch/work/a/atittert/private/dev_rates_scripts/ZB_emu_recalc_iet_" + std::to_string(cut_et) + "_ieta_"+ std::to_string(cut_ieta) + "/aaron_new";
     
-    //std::string run = "281613_161005";
-    //std::string outDirtot = "/afs/cern.ch/work/a/atittert/private/SM_Rates_Post_Calibration_Emu";
+    
     //std::vector<std::string> puType = {"0nVtx10","10nVtx20","20nVtx30","30nVtx40","40nVtx50"};
     std::vector<std::string> puType = {"nVtx1","nVtx2","nVtx3","nVtx4","nVtx5","nVtx6","nVtx7","nVtx8","nVtx9","nVtx10","nVtx11","nVtx12","nVtx13","nVtx14","nVtx15","nVtx16","nVtx17","nVtx18","nVtx19","nVtx20","nVtx21","nVtx22","nVtx23","nVtx24","nVtx25","nVtx26","nVtx27","nVtx28","nVtx29","nVtx30"};
     std::vector<double> puBins = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42};
@@ -56,10 +55,8 @@ void makeet_nVtx_plot(std::string run, double cut_et, int cut_ieta)
     
     
     std::vector<std::string> inDir;
-    // inDir.push_back("/afs/cern.ch/work/s/sbreeze/public/jets_and_sums/160704_SingleMu2016Bv1_l1t-int-v67p0");
-    //inDir.push_back("root://eoscms.cern.ch//eos/cms/store/group/dpg_trigger/comm_trigger/L1Trigger/L1Menu2016/Stage2/Collision2016-wRECO-l1t-integration-v86p4/SingleMuon/crab_Collision2016-wRECO-l1t-integration-v86p4__281613_SingleMuon/161005_194102/0000");
-    //inDir.push_back("root://eoscms.cern.ch//eos/cms/store/group/dpg_trigger/comm_trigger/L1Trigger/bundocka/ZeroBias/run281693_zbOld/160930_113228/0000");
-    //inDir.push_back("root://eoscms.cern.ch//eos/cms/store/group/dpg_trigger/comm_trigger/L1Trigger/L1Menu2016/Stage2/Collision2016-wRECO-l1t-integration-v88p0/Commissioning/crab_Collision2016-wRECO-l1t-integration-v88p0__283171_Commissioning/161022_161012/0000");
+    
+    
     inDir.push_back(Form("root://eoscms.cern.ch/%s",run.c_str()));
     
     std::string outDir = outDirtot+"/"+TL1DateTime::GetDate()+"_"+sampleName+"_"+triggerName+"/et_nVtx_plots/";
@@ -115,13 +112,13 @@ void makeet_nVtx_plot(std::string run, double cut_et, int cut_ieta)
         
         for(int j=0; j<et_ieta.size(); j++)
         {
-            et_ieta_plots[0]->Fill(double(pu), et_ieta[j][0], et_ieta[j][1]);
+            et_ieta_plots[0]->Fill(double(pu), et_ieta[j][0], et_ieta[j][1]);               // et vs nVtx
             
             if(et_ieta[j][1] < 29)
             {
                 eta_size = eta_values[j+1] - eta_values[j];
                 
-                et_ieta_plots[1]->Fill(double(pu), et_ieta[j][0]/eta_size, et_ieta[j][1]);
+                et_ieta_plots[1]->Fill(double(pu), et_ieta[j][0]/eta_size, et_ieta[j][1]);      // et_density vs nVtx
             }
         }
     }
