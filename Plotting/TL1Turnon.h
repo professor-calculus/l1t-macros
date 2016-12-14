@@ -17,6 +17,7 @@
 class TL1Turnon : public TL1Plots
 {
     public:
+        TL1Turnon(){}
         ~TL1Turnon();
 
         virtual void InitPlots();
