@@ -46,8 +46,8 @@ void makeet_nVtx_plot(std::string run, double cut_et, int cut_ieta)
     
     //std::vector<std::string> puType = {"0nVtx10","10nVtx20","20nVtx30","30nVtx40","40nVtx50"};
     std::vector<std::string> puType = {"nVtx1","nVtx2","nVtx3","nVtx4","nVtx5","nVtx6","nVtx7","nVtx8","nVtx9","nVtx10","nVtx11","nVtx12","nVtx13","nVtx14","nVtx15","nVtx16","nVtx17","nVtx18","nVtx19","nVtx20","nVtx21","nVtx22","nVtx23","nVtx24","nVtx25","nVtx26","nVtx27","nVtx28","nVtx29","nVtx30"};
-    std::vector<double> puBins = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42};
-    //std::vector<double> puBins = {1,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80};
+    //std::vector<double> puBins = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42};
+    std::vector<double> puBins = {1,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80};
     
     std::vector<double> eta_values = {0.,0.087,0.174,0.261,0.348,0.435,0.522,0.609,0.695,0.783,0.87,0.957,1.044,1.131,1.218,1.305,1.392,1.479,1.566,1.653,1.74,1.83,1.93,2.043,2.172,2.322,2.5,2.65,3.0};
     
