@@ -21,7 +21,7 @@ class TL1Turnon : public TL1Plots
         ~TL1Turnon();
 
         virtual void InitPlots();
-        virtual void Fill(const double & xVal, const double & seedVal, const int & pu=0);
+        virtual void Fill(const double & xVal, const double & seedVal, const double & pu=0);
         virtual void DrawPlots();
         void DrawCmsStamp(std::string stampPos="Left");
         void DrawTurnons();
