@@ -76,7 +76,7 @@ void TL1Turnon::InitPlots()
     }
 }
 
-void TL1Turnon::Fill(const double & xVal, const double & seedVal, const int & pu=0)
+void TL1Turnon::Fill(const double & xVal, const double & seedVal, const double & pu=0)
 {
     for(unsigned i=0; i<fSeeds.size(); ++i)
     {
