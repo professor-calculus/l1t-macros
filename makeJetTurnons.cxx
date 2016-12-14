@@ -10,7 +10,7 @@
 vector<double> bins();
 void SetMyStyle(int palette, double rmarg, TStyle * myStyle);
 
-void makeJetTurnons(std::string run)
+void makeJetTurnons(std::string run, double cut_et, int cut_ieta)
 {
     TStyle * myStyle(new TStyle(TDRStyle()));
     SetMyStyle(55, 0.07, myStyle);
@@ -25,6 +25,7 @@ void makeJetTurnons(std::string run)
 
     std::string outDirBase = Form("%s",run.c_str());
 
+    /*
     std::string startstring = "/eos/cms/store/group/dpg_trigger/comm_trigger/L1Trigger/L1Menu2016/Stage2/Collision2016-wRECO-l1t-integration-v86p4/SingleMuon/crab_Collision2016-wRECO-l1t-integration-v86p4__";
 
     std::string::size_type lol = outDirBase.find(startstring);
@@ -34,7 +35,11 @@ void makeJetTurnons(std::string run)
      	outDirBase.erase(lol, startstring.length());
     }
 
-    std::string outDirtot = "/afs/cern.ch/work/a/atittert/private/4_10_2016/"+outDirBase;
+     */
+    
+    std::string runstring = "281639";
+    
+    std::string outDirtot = "/afs/cern.ch/work/a/atittert/private/dev_rates_scripts/ZB_emu_recalc_iet_" + std::to_string(cut_et) + "_ieta_"+ std::to_string(cut_ieta) + "/aaron_new";
 
     //std::string run = "276243";
     //std::string outDirBase = "/afs/cern.ch/work/s/sbreeze/L1TriggerStudiesOutput";
@@ -51,8 +56,8 @@ void makeJetTurnons(std::string run)
     //inDir.push_back("/afs/cern.ch/work/s/sbreeze/public/jets_and_sums/160713_r276243_SingleMu_l1t-int-71p1/");
     inDir.push_back(Form("root://eoscms.cern.ch/%s",run.c_str()));
 
-    std::string outDir = outDirtot+"/"+TL1DateTime::GetDate()+"_"+sampleName+"_"+"run-"+run+"_"+triggerName+"/TurnonsJets/";
-    TL1EventClass * event(new TL1EventClass(inDir));
+    std::string outDir = outDirtot+"/"+TL1DateTime::GetDate()+"/TurnonsJets/";
+    TL1EventClass * event(new TL1EventClass(inDir, cut_et, cut_ieta));
     std::vector<TL1Turnon*> turnons;
 
     // Jet Et - barrel
@@ -108,7 +113,7 @@ void makeJetTurnons(std::string run)
     }
 
     unsigned NEntries = event->GetPEvent()->GetNEntries();
-    while( event->Next() )
+    while( event->Next(cut_et, cut_ieta) )
     {
         unsigned position = event->GetPEvent()->GetPosition()+1;
         TL1Progress::PrintProgressBar(position, NEntries);
