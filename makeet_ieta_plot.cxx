@@ -50,7 +50,7 @@ void makeet_ieta_plot(std::string run, double cut_et, int cut_ieta)
     std::vector<double> puBins = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42};
     //std::vector<double> puBins = {1,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80};
     
-    std::vector<double> eta_values = {0.,0.087,0.174,0.261,0.348,0.435,0.522,0.609,0.695,0.783,0.87,0.957,1.044,1.131,1.218,1.305,1.392,1.479,1.566,1.653,1.74,1.83,1.93,2.043,2.172,2.322,2.5,2.65,3.0};
+    std::vector<double> eta_values = {0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.087, 0.09, 0.1, 0.113, 0.129, 0.15, 0.178, 0.15, 0.35};
     
     std::vector<double> etbins = {5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80};
 
@@ -108,14 +108,16 @@ void makeet_ieta_plot(std::string run, double cut_et, int cut_ieta)
         
         std::vector< std::vector<double> > et_ieta = event->GetEtVsiEta();
         
+        auto caloTowers = event->GetPEvent()->fCaloTowers;
+        
         
         for(int j=0; j<et_ieta.size(); j++)
         {
             et_ieta_plots[0]->Fill(et_ieta[j][1], et_ieta[j][0], double(pu));   // et vs ieta
         
-            if(et_ieta[j][1] < 29)
+            if(abs(et_ieta[j][1]) > 0 && abs(et_ieta[j][1]) < 29)
             {
-                eta_size = eta_values[j+1] - eta_values[j];
+                eta_size = eta_values[abs(et_ieta[j][1])-1];
                 
                 double et_dens = et_ieta[j][0]/eta_size;
                 
