@@ -49,6 +49,7 @@
 		B2E62F13D16242DFB3DDE9A3 /* makeRates.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 0D849B32781F4711A981FC5C /* makeRates.cxx */; settings = {COMPILER_FLAGS = ""; }; };
 		C51ED6FCE77F46648569C208 /* TL1Progress.C in Sources */ = {isa = PBXBuildFile; fileRef = 1C2C03AE1F524813BA1E99E4 /* TL1Progress.C */; settings = {COMPILER_FLAGS = ""; }; };
 		F11E9FCCF90546A9902DD54F /* feature_tests.c in Sources */ = {isa = PBXBuildFile; fileRef = 325D652EFAF142D8AE190569 /* feature_tests.c */; settings = {COMPILER_FLAGS = ""; }; };
+		FA2E6F151E281E0200A4447E /* makeet_1d_plot.cxx in Sources */ = {isa = PBXBuildFile; fileRef = FA2E6F141E281E0200A4447E /* makeet_1d_plot.cxx */; };
 		FA33AAAE1DEF40CF002D0F5F /* makeet_ieta_plot.cxx in Sources */ = {isa = PBXBuildFile; fileRef = FA33AAAD1DEF40CF002D0F5F /* makeet_ieta_plot.cxx */; };
 		FA6AF43F1DFEBE7F00A32F4C /* makeet_nVtx_plot.cxx in Sources */ = {isa = PBXBuildFile; fileRef = FA6AF43E1DFEBE7F00A32F4C /* makeet_nVtx_plot.cxx */; };
 /* End PBXBuildFile section */
@@ -106,6 +107,8 @@
 		D9B932E89031472BA78DC65B /* testTL1DrawTurnon.C */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = testTL1DrawTurnon.C; path = Tests/testTL1DrawTurnon.C; sourceTree = SOURCE_ROOT; };
 		E2479995EE2F4239A0085769 /* generatePUWeights.cxx */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = generatePUWeights.cxx; sourceTree = SOURCE_ROOT; };
 		E262A91150C446AEB58BBDF8 /* makeRates_old.cxx */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = makeRates_old.cxx; sourceTree = SOURCE_ROOT; };
+		FA2143551E1D34F200FFF33A /* TL1et_1d_plot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TL1et_1d_plot.h; path = Plotting/TL1et_1d_plot.h; sourceTree = "<group>"; };
+		FA2E6F141E281E0200A4447E /* makeet_1d_plot.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = makeet_1d_plot.cxx; sourceTree = "<group>"; };
 		FA33AAAD1DEF40CF002D0F5F /* makeet_ieta_plot.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = makeet_ieta_plot.cxx; sourceTree = "<group>"; };
 		FA33AAB01DF050AC002D0F5F /* TL1et_ieta_plot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TL1et_ieta_plot.h; path = Plotting/TL1et_ieta_plot.h; sourceTree = "<group>"; };
 		FA6AF43E1DFEBE7F00A32F4C /* makeet_nVtx_plot.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = makeet_nVtx_plot.cxx; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 				03C929EB174E46DCB847950C /* makeRateEfficiency.cxx */,
 				0D849B32781F4711A981FC5C /* makeRates.cxx */,
 				FA33AAAD1DEF40CF002D0F5F /* makeet_ieta_plot.cxx */,
+				FA2E6F141E281E0200A4447E /* makeet_1d_plot.cxx */,
 				FA6AF43E1DFEBE7F00A32F4C /* makeet_nVtx_plot.cxx */,
 				E262A91150C446AEB58BBDF8 /* makeRates_old.cxx */,
 				7EAB591A57C0428BB3971C3A /* makeResolutions.cxx */,
@@ -191,6 +195,7 @@
 				8C983C05F3144FF2AADAF0A8 /* TL1RateEfficiency.h */,
 				29E01F1ED7F1404B85FC24AB /* TL1Rates.h */,
 				FA33AAB01DF050AC002D0F5F /* TL1et_ieta_plot.h */,
+				FA2143551E1D34F200FFF33A /* TL1et_1d_plot.h */,
 				08A48D2C8E87492694C0DE83 /* TL1Resolution.h */,
 				32BABB36EACA4D2A88D52313 /* TL1Turnon.h */,
 				01729A1AA761402A84B906B3 /* TL1XvsY.h */,
@@ -318,6 +323,7 @@
 				5315C8BF3F034056A53CB78C /* makeJetTurnons.cxx in Sources */,
 				971A20B1099345679FC89A0A /* makeJetXvsY.cxx in Sources */,
 				64EBCAB922D14454A7B50A1E /* makeRateEfficiency.cxx in Sources */,
+				FA2E6F151E281E0200A4447E /* makeet_1d_plot.cxx in Sources */,
 				B2E62F13D16242DFB3DDE9A3 /* makeRates.cxx in Sources */,
 				5749599DE1E146F3BB020F75 /* makeRates_old.cxx in Sources */,
 				5467A1C20EC34FD5BD4C3113 /* makeResolutions.cxx in Sources */,
