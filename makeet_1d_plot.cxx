@@ -7,6 +7,7 @@
 #include "Utilities/TL1DateTime.C"
 #include "Plotting/TL1et_1d_plot.h"
 #include "TH1.h"
+#include "TFile.h"
 
 std::vector<double> metBins();
 void SetMyStyle(int palette, double rmarg, TStyle * myStyle);
@@ -73,11 +74,12 @@ void makeet_1d_plot(std::string run, double cut_et, int cut_ieta)
     //std::vector<int> metbins = {75,80,85,90,95,100,120,99999};
     
     
+    TFile *g = TFile::Open(rootout.c_str(),"RECREATE");
     
     
-    typedef struct {double et_dens; int ieta, nVtx;} TOWERS;
+//    typedef struct {double et_dens; int ieta, nVtx;} TOWERS;
     
-    static TOWERS towers;
+//    static TOWERS towers;
     
     std::vector<TH1F*> nVtx10;
     std::vector<TH1F*> nVtx20;
@@ -106,12 +108,12 @@ void makeet_1d_plot(std::string run, double cut_et, int cut_ieta)
     
     for(int k=1; k<29; k++)
     {
-        nVtx10.push_back(new TH1F(Form("nVtx10_ieta%i",k),"0<nVtx<=10",200,0,1000));
-        nVtx20.push_back(new TH1F(Form("nVtx20_ieta%i",k),"10<nVtx<=20",200,0,1000));
-        nVtx30.push_back(new TH1F(Form("nVtx30_ieta%i",k),"20<nVtx<=30",200,0,1000));
-        nVtx40.push_back(new TH1F(Form("nVtx40_ieta%i",k),"30<nVtx<=40",200,0,1000));
-        nVtx50.push_back(new TH1F(Form("nVtx50_ieta%i",k),"40<nVtx<=50",200,0,1000));
-        nVtx60.push_back(new TH1F(Form("nVtx60_ieta%i",k),"50<nVtx<=60",200,0,1000));
+        nVtx10.push_back(new TH1F(Form("nVtx10_ieta%i",k),"0<nVtx<=10",200,0,400));
+        nVtx20.push_back(new TH1F(Form("nVtx20_ieta%i",k),"10<nVtx<=20",200,0,400));
+        nVtx30.push_back(new TH1F(Form("nVtx30_ieta%i",k),"20<nVtx<=30",200,0,400));
+        nVtx40.push_back(new TH1F(Form("nVtx40_ieta%i",k),"30<nVtx<=40",200,0,400));
+        nVtx50.push_back(new TH1F(Form("nVtx50_ieta%i",k),"40<nVtx<=50",200,0,400));
+        nVtx60.push_back(new TH1F(Form("nVtx60_ieta%i",k),"50<nVtx<=60",200,0,400));
     }
     
     
@@ -120,8 +122,6 @@ void makeet_1d_plot(std::string run, double cut_et, int cut_ieta)
     //TTree *outputtree = new TTree("TOWERS","Output Tree");
     
     //outputtree->Branch("Towers", &towers, "et_dens/D:ieta/I:nVtx");
-    
-    TFile *g = TFile::Open(rootout,"NEW");
 
     
     unsigned NEntries = event->GetPEvent()->GetNEntries();
@@ -156,7 +156,7 @@ void makeet_1d_plot(std::string run, double cut_et, int cut_ieta)
                 }
                 else if(pu > 10 && pu < 21)
                 {
-                    nVtx20[abs(et_ieta[j][1])-1]->Fill(dens);
+                    nVtx20[abs(et_ieta[j][1])-1]->Fill(et_dens);
                 }
                 else if(pu > 20 && pu < 31)
                 {
